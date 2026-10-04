@@ -1,0 +1,25 @@
+# Python / C build artefacts
+__pycache__/
+*.pyc
+*.o
+*.exe
+
+# Run output and logs left in the repository root by long searches
+/*.err
+/*.out
+/*.log
+/*.g6
+/*.txt
+
+# One-line stub, no content
+/work/
+
+# Created at run time by tools/sweep.sh and friends
+sw/
+out/
+
+# Third-party code is fetched from its authors and built locally, never
+# committed: nauty (McKay) and snarkhunter (Brinkmann, Goedgebeur, McKay).
+sh/
+nauty*/
+snarkhunter*/
