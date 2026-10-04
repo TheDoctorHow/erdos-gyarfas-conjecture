@@ -1,4 +1,4 @@
-# Toward a Proof — Working Notes
+# Toward a Proof: Working Notes
 
 Companion to `RESEARCH-BRIEF.md` (literature) and `RESULTS.md` (search). This file holds only
 things that are **proved**, things that are **refuted**, and the reasons.
@@ -24,40 +24,40 @@ natural first step is:
 *Step 2.* The `uᵢ` are distinct: if `uᵢ = u_j` that vertex has two neighbours on `C` at distance 1
 or 2 along `C`, giving a triangle or a 4-cycle.
 
-*Step 3.* No `uᵢ` is adjacent to `v_j`, `j ≠ i` — that gives a cycle of length 3 (`j = i±1`) or 4
+*Step 3.* No `uᵢ` is adjacent to `v_j`, `j ≠ i`, since that gives a cycle of length 3 (`j = i±1`) or 4
 (`j = i±2`). So each `vᵢ` is **saturated**: its neighbours are exactly `v_{i−1}, v_{i+1}, uᵢ`.
 
 *Step 4.* `U = {u₁,…,u₅}` is independent. If `uᵢ ~ u_j` then the path `vᵢ uᵢ u_j v_j` (3 edges)
 closes along either arc of `C`:
-`j = i±1` → lengths 4 and 7 — the 4-cycle contradicts the girth;
-`j = i±2` → lengths 5 and 6 — the 6-cycle is forbidden. ∎(step)
+`j = i±1` → lengths 4 and 7, and the 4-cycle contradicts the girth;
+`j = i±2` → lengths 5 and 6, and the 6-cycle is forbidden. ∎(step)
 So each `uᵢ` has two neighbours outside `C ∪ U`: **10 edge-ends**.
 
 *Step 5.* No vertex outside `C ∪ U` is adjacent to two members of `U`. If `w ~ uᵢ, u_j`, the path
 `vᵢ uᵢ w u_j v_j` has 4 edges and closes to lengths `4+d` and `4+(5−d)`:
-`j = i±1` (d=1) → 5 and **8** — forbidden;
-`j = i±2` (d=2) → **6** and **7** — forbidden. ∎(step)
+`j = i±1` (d=1) → 5 and **8**, forbidden;
+`j = i±2` (d=2) → **6** and **7**, forbidden. ∎(step)
 Hence the 10 edge-ends land on **10 distinct** vertices `W`. (`W ∩ C = ∅` by Step 3's saturation,
 `W ∩ U = ∅` by Step 4.)
 
 *Step 6.* `W` is independent. If `w ~ w′` with `w ~ uᵢ`, `w′ ~ u_j`:
 `i = j` → `uᵢ w w′` is a triangle;
-`j = i±1` → path of 5 edges closing to **6** and 9 — the 6-cycle is forbidden;
-`j = i±2` → **7** and **8** — both forbidden. ∎(step)
+`j = i±1` → path of 5 edges closing to **6** and 9, and the 6-cycle is forbidden;
+`j = i±2` → **7** and **8**, both forbidden. ∎(step)
 So each `w ∈ W` has two neighbours outside `C ∪ U ∪ W` (its `U`-neighbour is unique by Step 5, `C`
 is saturated, `W` is independent): **20 edge-ends**.
 
 *Step 7.* No vertex outside `C ∪ U ∪ W` is adjacent to two members of `W`. If `x ~ w, w′`:
 `i = j` → `uᵢ w x w′` is a 4-cycle;
-`j = i±1` → path of 6 edges closing to **7** and 10 — forbidden;
-`j = i±2` → **8** and 9 — the 8-cycle is forbidden. ∎(step)
+`j = i±1` → path of 6 edges closing to **7** and 10, forbidden;
+`j = i±2` → **8** and 9, and the 8-cycle is forbidden. ∎(step)
 Hence 20 further distinct vertices `X`.
 
 Therefore `n ≥ |C| + |U| + |W| + |X| = 5 + 5 + 10 + 20 = 40`. ∎
 
 **Computational confirmation.** All **1,709,718** connected cubic graphs of girth exactly 5 on
 ≤ 24 vertices have a cycle of length 6, 7 or 8 (1,709,610 have a `C6`; 106 have least length 7;
-exactly **2** have least length 8). Zero violations — consistent with, and much weaker than, the
+exactly **2** have least length 8). Zero violations: consistent with, and much weaker than, the
 bound above.
 
 ### 1.2 …but the sub-lemma itself is FALSE. Explicit construction.
@@ -90,7 +90,7 @@ on 122 vertices from base `C112.1` (girth 10) is in `tools/pentagon122.g6`; its 
 
 - **The girth-by-girth attack on the truncation route is dead.** You cannot get `spec ∩ B ≠ ∅` by
   showing "girth `g` forces a cycle just above `g`".
-- **The truncation route itself survives**, because the constructed graph still meets `B` — at 11.
+- **The truncation route itself survives**, because the constructed graph still meets `B`, at 11.
   The correct statement to attack is the global one (`spec` meets `B`), not its girth-local shadow.
 - **New extremal question, and a sharp gap.** Let `μ` be the least order of a cubic graph of girth
   5 with no cycle of length 6, 7 or 8. We have proved `40 ≤ μ ≤ 70`, with `μ > 24` verified
@@ -104,12 +104,12 @@ The two halves of §1 together explain the difficulty in a way I have not seen s
 
 Let `F` be a set of forbidden cycle lengths and let `G` be cubic with no cycle of length in `F`.
 Ball growth from a shortest cycle forces a collision at depth `d` to create a cycle of length
-≈ `2d`. The argument keeps buying a new level — and each level **doubles** the vertex count — for
+≈ `2d`. The argument keeps buying a new level (and each level **doubles** the vertex count) for
 exactly as long as the newly created lengths keep landing in `F`.
 
-- `F ⊇ {6,7,8}` — a **block** of three consecutive lengths. The argument survives three levels and
+- `F ⊇ {6,7,8}`: a **block** of three consecutive lengths. The argument survives three levels and
   yields `n ≥ 40` (§1.1), an exponential-in-`|block|` bound.
-- `F = {4, 8, 16, 32, …}` — a **geometric** sequence. Consecutive forbidden values are far apart, so
+- `F = {4, 8, 16, 32, …}`: a **geometric** sequence. Consecutive forbidden values are far apart, so
   after the first collision the created lengths fall in the gaps and are permitted. The argument
   stalls after `O(1)` levels.
 
@@ -119,25 +119,25 @@ Krakovski's planar proof escapes this only because Euler's formula supplies a *g
 has nothing to do with the local ball. Any proof of Erdős–Gyárfás must be global in the same sense.
 
 This also predicts, correctly, where the conjecture *is* provable: exactly the regimes where a
-global quantity is available — planarity (Euler), high average degree (Liu–Montgomery's expander
+global quantity is available: planarity (Euler), high average degree (Liu–Montgomery's expander
 decomposition), bounded induced paths (`P_k`-freeness bounds the whole graph, not a ball), and
 bounded diameter.
 
 ---
 
-## 3. THE CRUX — the Dyadic Window Lemma
+## 3. THE CRUX: the Dyadic Window Lemma
 
 Adversarial refereeing of six proof routes produced one clean positive outcome: an argument that
 the *shape* of any possible proof is now forced.
 
 **Proposition A (proved).** Let `W(k) ⊆ ℤ≥3`. The hypothesis "`spec(G)` **meets** `W(k)` for every
 `k`" implies "`spec(G)` contains a power of two", for every set `spec`, **iff `W(k) ⊆ {powers of
-two}` for some `k`.** *Proof:* contrapositive — pick a non-power-of-two `w(k) ∈ W(k)` for each `k`
+two}` for some `k`.** *Proof:* contrapositive; pick a non-power-of-two `w(k) ∈ W(k)` for each `k`
 and let `S = {w(k)}`. ∎
 
 **Corollary B.** For interval windows `W(k) = [k, f(k)]`, no two consecutive integers ≥ 3 are both
 powers of two, so this forces `f(k) = k = 2^m`. **An interval-*meeting* theorem implies EG if and
-only if it already asserts EG — the width of the window is irrelevant.** Even "spec meets `[k,k+1]`
+only if it already asserts EG; the width of the window is irrelevant.** Even "spec meets `[k,k+1]`
 for every `k`", far stronger than anything known, would be useless: the witness
 `S* = {n ≥ 3 : n not a power of two}` meets every such window, contains elements ≡ 0 mod 4 (so
 Dean–Lesniak–Saito does not kill it), contains even numbers, and satisfies Bondy–Vince.
@@ -148,7 +148,7 @@ Dean–Lesniak–Saito does not kill it), contains even numbers, and satisfies B
 two. *Proof:* let `2^j` be least with `2^j > a`; then `2^{j−1} ≤ a`, so `2^j ≤ 2a`. ∎
 
 So **MEETS is useless; CONTAINS at ratio 2 is sufficient.** The naive containment "`spec(G) ⊇
-[a,2a]`" is nonetheless **false** — every bipartite cubic graph has an all-even spectrum and
+[a,2a]`" is nonetheless **false**: every bipartite cubic graph has an all-even spectrum and
 contains no integer interval of length ≥ 2 (witness `Q?HW?eOOCCCBa?O_CG?@_??o??w`, n = 18,
 spec = 6,8,10,12,14,16,18). Correcting for parity gives the right object:
 
@@ -157,15 +157,15 @@ spec = 6,8,10,12,14,16,18). Correcting for parity gives the right object:
 **This implies Erdős–Gyárfás for _cyclically 4-edge-connected_ cubic graphs**: by Proposition C,
 `(a,2a]` contains a power of two `2^j ≥ 2a₀ ≥ 8`, which is even, hence `2^j ∈ spec(G)`. ∎
 
-> ### ⚠ CORRECTION — DWL does **not** currently imply EG
+> ### ⚠ CORRECTION: DWL does **not** currently imply EG
 > I earlier wrote that DWL "implies Erdős–Gyárfás for cubic graphs, given the reductions above".
 > **That is not established.** DWL is stated for *cyclically 4-edge-connected* cubic graphs, and
 > §4 records that a minimal cubic counterexample **cannot be forced** to be cyclically
-> 4-edge-connected — any triangle yields a cyclic 3-edge-cut, and all four known 24-vertex
+> 4-edge-connected: any triangle yields a cyclic 3-edge-cut, and all four known 24-vertex
 > near-misses have cyclic edge connectivity exactly 3. The connectivity reductions cap at
 > 3-connected. So the missing step is precisely the reduction that has been shown unavailable.
 >
-> And the hypothesis cannot simply be dropped — **DWL is outright false one notch below it**, for
+> And the hypothesis cannot simply be dropped: **DWL is outright false one notch below it**, for
 > every `a₀`:
 > * cyclic edge-connectivity 1: bridged-gadget theta family, no window at all, circumference `8m → ∞`;
 > * cyclic edge-connectivity 2: the diamond necklace, no window, circumference `4m → ∞`;
@@ -175,7 +175,7 @@ spec = 6,8,10,12,14,16,18). Correcting for parity gives the right object:
 > **So the load-bearing open step in the whole programme is the reduction of EG-for-cubic to
 > EG-for-cyclically-4-edge-connected-cubic.** Anyone banking on DWL must supply that first.
 
-**Status: CONJECTURED.** Verified with `a₀ = 5` — and `a₀ = 5` is exactly right, since for a
+**Status: CONJECTURED.** Verified with `a₀ = 5`, and `a₀ = 5` is exactly right, since for a
 C4-free graph `a ∈ {2,3,4}` would demand `4 ∈ spec`:
 
 | population | count | failures |
@@ -189,16 +189,16 @@ C4-free graph `a ∈ {2,3,4}` would demand `4 ∈ spec`:
 1993), interval-meeting theorems (Corollary B), connectivity reductions (§4 below), minor/contraction
 arguments (`spec` is only subgraph-monotone), expanders (dead at degree 3), discharging (needs a
 fixed surface), local/ball-growth arguments (§2). What remains is: **produce many consecutive even
-cycle lengths.** And it sits exactly one multiplicative doubling beyond the state of the art —
+cycle lengths.** And it sits exactly one multiplicative doubling beyond the state of the art:
 Bondy–Vince gives *two* lengths differing by ≤ 2 at minimum degree 3; Gao–Huo–Liu–Ma and Li–Zhan
 give *k* consecutive lengths only at minimum degree ≥ k+1, i.e. nothing past k = 2 at degree 3. The
 crux asks for `Ω(girth)` consecutive even lengths.
 
-**First thing to do:** test the crux against Merker's families — graphs *engineered* to have a long
+**First thing to do:** test the crux against Merker's families, graphs *engineered* to have a long
 spectral hole. If it survives there it is a serious conjecture; if it fails, the last remaining
 shape is gone, which is the most valuable negative result available.
 
-## 3b. The crux tested against Merker's families — it survives, and we know why
+## 3b. The crux tested against Merker's families: it survives, and we know why
 
 Merker's Theorem 7 construction (arXiv:1905.09101) was implemented **verbatim** and verified to
 reproduce its claimed gaps exactly:
@@ -222,14 +222,14 @@ In every case `a = 4k+1` and the window sits immediately above the engineered ho
 > ### ⚠ Important caveat, found by refereeing
 > **Every graph in this family has cyclic edge connectivity 3 and girth 3, so none of them
 > satisfies DWL's hypothesis.** Substitution attaches each gadget by 3 edges and the gadget
-> contains a cycle, so a cyclic 3-edge-cut is unavoidable — and the same applies to the Cui–Lo and
+> contains a cycle, so a cyclic 3-edge-cut is unavoidable, and the same applies to the Cui–Lo and
 > Zamfirescu extremal-gap families. They are therefore *not admissible tests* of DWL as stated;
 > that DWL holds on them anyway is a bonus, not a trial. The genuinely informative content of this
 > section is the **band-merging mechanism** below, which is what actually explains why engineered
 > holes stay at the bottom of the spectrum.
 >
 > More generally: **no single finite graph can refute DWL**, because `a₀` is existentially
-> quantified — any graph of circumference `c` is silenced by taking `a₀ > c/2`. A refutation
+> quantified: any graph of circumference `c` is silenced by taking `a₀ > c/2`. A refutation
 > requires an *infinite family* with `c → ∞` in which every window fails.
 
 ### Why: the gadget's path-length set is a full interval of ratio 2
@@ -243,7 +243,7 @@ Computing the terminal-to-terminal path lengths of `H_j` exactly:
 | `H₃` | `{7,…,13}` |
 | `H₄` | `{9,…,17}` |
 
-So `A = [2j+1, 4j+1]` — a **full integer interval** with `q = 2p − 1` exactly.
+So `A = [2j+1, 4j+1]`, a **full integer interval** with `q = 2p − 1` exactly.
 
 A cycle of `D(M,H)` crossing `s` gadgets has length in `(s-fold sumset of A) + (base edges used)`.
 For an interval `A = [p, q]` the `s`-fold sumset is the full interval `[sp, sq]`, and consecutive
@@ -252,7 +252,7 @@ bands overlap as soon as `(s+1)p ≤ sq`, i.e. `p + s ≤ ps`, which holds for a
 An engineered hole can therefore only ever live at the bottom, at the single-gadget scale
 (`s ≤ 1`), which is exactly what the measurements show.
 
-Merker's gadget sits precisely at the boundary `q = 2p − 1` — it is the extremal choice — and the
+Merker's gadget sits precisely at the boundary `q = 2p − 1` (it is the extremal choice), and the
 bands still merge. To break DWL by substitution you would need a cubic gadget whose crossing
 path-length set is **narrow** (not an interval of ratio ~2). But cubicity works against you: the
 terminals have degree 2 and every internal vertex has degree 3, so a gadget with a cycle in it
@@ -270,12 +270,12 @@ that are *literally intervals* above their hole. That is a substantially stronge
 "no gap of ratio > 2" that Merker's upper-bound theorem provides, and it is the first positive
 evidence for the crux from graphs engineered to be hostile to it.
 
-## 3i. ★★★ THE CORRECTED KEYSTONE — and the first unconditional theorem with content
+## 3i. ★★★ THE CORRECTED KEYSTONE, and the first unconditional theorem with content
 
 > ### ⚠ My definition of dyadic fatness had an off-by-one. The correct threshold is `b ≥ 2a − 2` in **both** branches.
 >
 > *Why.* Let `2^j` be least with `2^j ≥ a`. Then `2^{j−1} < a`, so `2^j ≤ 2a−1`. But `a ≥ 3` forces
-> `2^j ≥ 4`, so **`2^j` is even**, while `2a−1` is **odd** — hence `2^j ≠ 2a−1` and therefore
+> `2^j ≥ 4`, so **`2^j` is even**, while `2a−1` is **odd**, hence `2^j ≠ 2a−1` and therefore
 > `2^j ≤ 2a−2 ≤ b`. ∎
 >
 > I used exactly this parity argument in the `d = 2` branch and never applied it to `d = 1`.
@@ -312,15 +312,15 @@ exactly 2, **nothing misses by 1**, and the bulk sits at margin ≥ 2.
 > `b = c ≥ 2g−2 = 2a−2`. Bipartite: `g` is even and `≥ 4`; the largest even `b′ ≤ c` satisfies
 > `b′ ≥ 2g−2 = 2a−2`, with `d = 2` and `a = g` even. ∎
 
-The **only** input is `c ≥ 2g−2` for `δ ≥ 3` — a four-line longest-path argument (take a longest
+The **only** input is `c ≥ 2g−2` for `δ ≥ 3`, a four-line longest-path argument (take a longest
 path `v₀…v_k`; the neighbours of `v₀` lie on it at `1 = i₁ < … < i_t`, `t ≥ 3`; then `i₂ ≥ g−1` and
 `i_t − i₂ ≥ g−2`, so `c ≥ i_t + 1 ≥ 2g−2`). Citing Zhang 1989 / Ellingham–Menser 2000 is overkill.
-**And the `c = 2g−2` extremal classification is no longer needed at all** — it existed only to
+**And the `c = 2g−2` extremal classification is no longer needed at all**: it existed only to
 service the wrong threshold.
 
 > ⚠ **Honest scope.** This theorem is not vacuous (89.4% of 3-connected cubic graphs on `n ≤ 20` are
 > hole-free) **but it decides nothing hard**: Petersen, `I(K₄)`, all four Markström near-misses and
-> `ce34` are all *holed*. And hole-freeness is a property of the answer — certifying it means
+> `ce34` are all *holed*. And hole-freeness is a property of the answer; certifying it means
 > exhibiting a cycle of *every* length in `[g,c]`, strictly more work than exhibiting one power of
 > two. It is legitimate as the easy branch of a case split, and nothing more.
 >
@@ -331,14 +331,14 @@ service the wrong threshold.
 >
 > ⚠ **Tooling defect:** `fat.c` filters on *minimum* degree 3 and never checks maximum degree, but
 > its cycle-space shortcut is valid only for cubic graphs; and its 64-bit edge masks overflow at
-> `n > 42`. Every input so far was strictly cubic, so no quoted result is affected — but it is
+> `n > 42`. Every input so far was strictly cubic, so no quoted result is affected, but it is
 > unsafe for the general min-degree-3 setting.
 
 **New exhaustive data:** all **1,620,479** connected cubic graphs of girth ≥ 5 on 24 vertices are
-dyadically fat and satisfy EG — the first exhaustive coverage of the girth-≥5 stratum past `n = 22`,
+dyadically fat and satisfy EG: the first exhaustive coverage of the girth-≥5 stratum past `n = 22`,
 and the only stratum where EG is not free.
 
-## 3h. THE ASSEMBLED SEA — the whole conjecture reduced to three gaps
+## 3h. THE ASSEMBLED SEA: the whole conjecture reduced to three gaps
 
 ### The keystone: dyadic fatness
 
@@ -358,7 +358,7 @@ flags all of them spuriously (178 "exceptions" at `n ≤ 18`, nearly all with sp
 `{4,6,8,…,n}`). With the corrected definition:
 
 > **Exactly FOUR** of all **33,715** three-connected cubic graphs on `n ≤ 18` fail to be dyadically
-> fat — `K₄` `{3,4}`, **Petersen** `{5,6,8,9}`, `KhhK?gO?gD?J` `{4,5,7,…,12}`, and
+> fat: `K₄` `{3,4}`, **Petersen** `{5,6,8,9}`, `KhhK?gO?gD?J` `{4,5,7,…,12}`, and
 > `OhhK?G??gD?J?GC?a?OAB` `{4,7,9,…,16}`. **All four satisfy EG directly** (C4, C8, C8, C16).
 > None at `n` = 6, 8, 14, 18.
 
@@ -393,7 +393,7 @@ document is either a brick in this wall or a proof that some other wall cannot b
 ## 3g. ★ THE FUNCTORIAL HANDLE, AND THE FIRST RESULT UNCONDITIONAL IN n
 
 > **The rising-sea obstruction is bypassed.** Cycle spectra are monotone under nothing but
-> subgraph-taking — but **circumference is monotone under topological minors**, and the classical
+> subgraph-taking, but **circumference is monotone under topological minors**, and the classical
 > cubic expansion theorem (Tutte 1961 / Batagelj) makes 3-connected cubic graphs a **directed
 > system** in exactly that order. That is a category the sea can rise in, and it converts finite
 > computation into infinite theorems.
@@ -418,11 +418,11 @@ complete sweep of all 5,909,292 three-connected cubic graphs on 22 vertices (sha
 on `≤ 22` vertices has a `C4` or `C8` (the only four exceptions in the `≤ 24` census have 24
 vertices). ∎
 
-**This is the first EG result in the project that is unconditional in `n`** — everything previous
+**This is the first EG result in the project that is unconditional in `n`**; everything previous
 was "no counterexample on ≤ N vertices".
 
 **The ladder's ceiling.** Blowing up `k` vertices of `K₄` into copies of Petersen-minus-a-vertex
-gives 3-connected cubic graphs with `(n,c) = (4,4), (12,11), (20,18), (28,25), (36,32)` — two of
+gives 3-connected cubic graphs with `(n,c) = (4,4), (12,11), (20,18), (28,25), (36,32)`, two of
 them extremal. So `μ₃(36) ≤ 32`: closing `c ≤ 31` would need a census at `n ≈ 36`, out of reach.
 Practical rungs: census to `n = 24` → `c ≤ 21`; to `n = 26` → `c ≤ 23`.
 
@@ -437,11 +437,11 @@ absorbing state* under `I`. *Circumference bound*: `c ≥ n^{4/5}` (Liu–Yu–Z
 every `a₀ ≤ 10` (refuted by `I(K₄)`, n=20, c=20) and survives at `a₀ = 11`. **`a₀ = 11` is exactly
 the threshold.** Exactly four 3-connected cubic graphs on `10 ≤ n ≤ 20` have no even dyadic window.
 
-> ⚠ **All of §3g is UNREFEREED** — a session limit killed all 21 referee agents and the assembly.
+> ⚠ **All of §3g is UNREFEREED**: a session limit killed all 21 referee agents and the assembly.
 > In this project a majority of plausible claims have died under refereeing. Only `μ₃(20) = 18` and
 > the ladder arithmetic have been independently re-verified here.
 
-> ⚠ **RETRACTION.** The "gcd ≤ 2 collapse law" I quoted (86,425 gadgets, gcd never ≥ 3) is **FALSE** —
+> ⚠ **RETRACTION.** The "gcd ≤ 2 collapse law" I quoted (86,425 gadgets, gcd never ≥ 3) is **FALSE**:
 > the gcd is unbounded, with cubic counterexamples, via pendant-blob inflation. The corrected form
 > needs `F` 2-connected with all non-terminal vertices of degree ≥ 3.
 >
@@ -450,22 +450,22 @@ the threshold.** Exactly four 3-connected cubic graphs on `10 ≤ n ≤ 20` have
 > Lyngsie–Merker, Dean–Lesniak–Saito, and any future even-`k` extension cannot get there. My
 > proposed mod-8 escape was pointed in a direction that provably cannot reach.
 
-## 3f. ⛔ TOP-HALF DENSITY IS **FALSE** — refuted at n = 34
+## 3f. ⛔ TOP-HALF DENSITY IS **FALSE**: refuted at n = 34
 
 > **Counterexample.** `a?\o????wF????????w?M_??A???????[??MO@?c???C??????????B_??@oAC?C_?????@????????????[????MCG???_`
-> — a **K₂,₃-inflation** of six vertices of a 10-vertex cubic base.
+> It is a **K₂,₃-inflation** of six vertices of a 10-vertex cubic base.
 
 Independently verified here, four code paths (own decoder; GF(2) cycle-space enumeration over all
 2¹⁸ elements; `egcore` DFS; explicit witness check):
 
 | property | value |
 |---|---|
-| n, m | 34, 51 — simple, cubic |
+| n, m | 34, 51 (simple, cubic) |
 | 3-connected | yes (all 34 single and all 561 pair vertex-deletions leave it connected) |
 | circumference | **c = 33** |
-| spectrum | `{4} ∪ [11,29] ∪ {31, 33}` — **no 30-cycle, no 32-cycle** |
+| spectrum | `{4} ∪ [11,29] ∪ {31, 33}`: **no 30-cycle, no 32-cycle** |
 | window | `(c/2, c] = (16.5, 33]`, in which **32 = 2⁵ is the unique power of two** |
-| witness | `C₄ ⊔ C₂₈` — vertex-disjoint, all edges verified, **32 edges, 2 components** |
+| witness | `C₄ ⊔ C₂₈`: vertex-disjoint, all edges verified, **32 edges, 2 components** |
 
 So a 2-regular subgraph of size 32 exists, no 32-cycle exists, and 32 is exactly the power of two
 the implication `THD ⟹ EG` consumes. **Statement (B) fails, THD is false, and the last live route
@@ -475,12 +475,12 @@ to Erdős–Gyárfás is closed.**
 
 Replace a cubic vertex `v` with neighbours `x,y,z` by `K₂,₃` with parts `{p,q}, {x,y,z}`. The three
 external edges form a 3-edge-cut, and a cycle crosses an edge cut an even number of times, hence 0
-or 2. Crossing 0: the cycle avoids the gadget, or lies inside it — and every cycle of `K₂,₃` is a
+or 2. Crossing 0: the cycle avoids the gadget, or lies inside it, and every cycle of `K₂,₃` is a
 4-cycle. Crossing 2: it traverses a path between two attachment vertices, and the only such paths
 are `x-p-y`, `x-q-y` (length 2) and `x-p-z-q-y`, `x-q-z-p-y` (length 4). Hence every cycle projects
 to a base cycle `C₀` with `|C| = |C₀| + Σ t_v`, `t_v ∈ {2,4}`, so
 
-> **`|C| ≡ |C₀| (mod 2)`** — cycle lengths are **parity-locked with a hard ceiling per parity**.
+> **`|C| ≡ |C₀| (mod 2)`**: cycle lengths are **parity-locked with a hard ceiling per parity**.
 > 2-regular subgraphs are **not**: a gadget 4-cycle can be added disjointly to any long cycle,
 > overshooting the ceiling by 4. ∎
 
@@ -490,31 +490,31 @@ Writing `c_ε` for the largest cycle length of parity `ε`: **(B) fails at any `
 **Independently confirmed at the other parity by my own `n ≤ 20` sweep:** 3 merge failures over all
 429,865 three-connected cubic graphs, **all at odd `L`**, including the **dodecahedron**
 (`c = 20`, `c_odd = 17`, size 19 realisable by a 2-component subgraph but by no cycle). Zero *even*
-failures at `n ≤ 20` — which is exactly why THD survived exhaustive checking to `n = 22` and needed
+failures at `n ≤ 20`, which is exactly why THD survived exhaustive checking to `n = 22` and needed
 `n = 34` to break.
 
 ### Not repairable by moving the window
 
 The honest window is `(c/2, c_ε]`. For this family `c − c_even = 5`, so the corrected window is
-`(16.5, 28]` — which contains **no power of two** (`16 ≤ 16.5`, `32 > 28`). The `THD ⟹ EG`
+`(16.5, 28]`, which contains **no power of two** (`16 ≤ 16.5`, `32 > 28`). The `THD ⟹ EG`
 implication therefore has nothing to say about this graph even after repair.
 
 ### What survives
 
-- **Erdős–Gyárfás is untouched** — this graph has 18 four-cycles and 528 sixteen-cycles.
+- **Erdős–Gyárfás is untouched**: this graph has 18 four-cycles and 528 sixteen-cycles.
 - **The Dyadic Window Lemma survives it.** On this very graph DWL holds with `a = 11` (every even
   length in `[12,22]` is a cycle length). THD died because it demanded the window be the *top* half,
   which is exactly where the parity ceiling bites; DWL lets the window sit lower, where the spectrum
   is dense. **DWL restricted to 3-connected cubic graphs (`a₀ = 11`) is now the leading candidate.**
 
-## 3e. Top-Half Density (REFUTED — see §3f) — the reformulation of its Hamiltonian case
+## 3e. Top-Half Density (REFUTED, see §3f): the reformulation of its Hamiltonian case
 
 > **Top-Half Density (THD).** Every 3-connected cubic graph with circumference `c` has a cycle of
 > every **even** length `ℓ` with `c/2 < ℓ ≤ c`.
 
 **Implies EG for 3-connected cubic graphs**, since `(c/2, c]` contains a power of two (if `2^j` is
 least with `2^j > c/2` then `2^{j−1} ≤ c/2`, so `2^j ≤ c`) and every power of two ≥ 4 is even. The
-window cannot be shrunk — `2^j` can sit just above `c/2` — and "even" is essential, since bipartite
+window cannot be shrunk (`2^j` can sit just above `c/2`), and "even" is essential, since bipartite
 cubic graphs have no odd cycles. Crucially, **3-connectivity is reachable** by the established
 reduction chain, unlike the cyclic-4-edge-connectivity that DWL needed.
 
@@ -533,7 +533,7 @@ truncation*, since `spec(H) ⊇ [c_H/2, c_H]` gives `spec(T(H)) ⊇ [c_H, 3c_H] 
 `v₀v_i v_{i+1}…v_j v₀` gives `j−i ≥ g−2`; so `v₀v₁…v_j v₀` has length `j+1 ≥ 2g−2`. ∎
 Tight at `K₄`, `K_{3,3}` and all `K_{3,m}`.
 
-> ⚠ **This is folklore, not new** — it is the `d = 3` case of Zhang, *Circumference and girth*,
+> ⚠ **This is folklore, not new**: it is the `d = 3` case of Zhang, *Circumference and girth*,
 > JGT **13** (1989) 485–490, and is weaker than Ellingham–Menser, JGT **34** (2000) 221–233.
 >
 > ⚠ **A Menger-style proof of the same bound that I gave earlier is BROKEN.** The step "the three
@@ -547,7 +547,7 @@ Tight at `K₄`, `K_{3,3}` and all `K_{3,m}`.
 > only `c ≥ 2g−4` is needed. And the danger case was never close: measured `min(c − 2g + 3)` is
 > 9, 11, 13 at `n` = 18, 20, 22, growing by 2 per 2 vertices.
 
-**Consequence:** `c/2 ≥ g−1`, so every integer `> c/2` is `≥ g` — THD can never fail for lack of a
+**Consequence:** `c/2 ≥ g−1`, so every integer `> c/2` is `≥ g`, so THD can never fail for lack of a
 short cycle.
 
 ### THE CRUX, made exact: size versus connectivity
@@ -560,36 +560,36 @@ Split THD into two statements:
 
 `THD = (A) ∧ (B)`. Over all 412 three-connected cubic graphs on `n = 10, 12, 14`, both hold with
 zero failures. **But for every 2-connected counterexample, (A) holds and (B) fails**: e.g.
-`Kz?GWKGCK@?J` has 2-regular subgraphs of every size 3…12 — *including* the missing value 8 — but no
+`Kz?GWKGCK@?J` has 2-regular subgraphs of every size 3…12 (*including* the missing value 8) but no
 8-cycle.
 
 > **So THD is not a statement about which lengths exist. It is the statement that above `c/2`,
-> disconnected 2-regular subgraphs can always be traded for connected ones — and 3-connectivity is
+> disconnected 2-regular subgraphs can always be traded for connected ones, and 3-connectivity is
 > exactly the hypothesis that makes the trade possible.**
 
 Linear-algebra form: for chord set `S` and parity `ε`, the class is a single cycle iff the
 arc–chord GF(2) incidence matrix `N_ε(S)` (k×k) has rank `k−1`; `#components = k − rank`. (The
-interlacement nullity is *not* the right matrix — tested and refuted.) And the hook tying the
+interlacement nullity is *not* the right matrix; tested and refuted.) And the hook tying the
 hypothesis to the diagram: **for a Hamiltonian cubic graph, `G` is 3-connected iff the interlacement
-graph of the full chord matching is connected** — verified on all 4,420 Hamiltonian cubic graphs
+graph of the full chord matching is connected**, verified on all 4,420 Hamiltonian cubic graphs
 with `n ≤ 16`, zero disagreements.
 
-### The MERGE LEMMA — corrected, and what a merge move actually requires
+### The MERGE LEMMA, corrected, and what a merge move actually requires
 
 > ⚠ **The lemma as originally stated is FALSE, for a trivial reason: it needs `L ≤ c`.**
 > In a non-Hamiltonian cubic graph a 2-factor has `n > c` edges and can never be a single cycle.
-> Smallest witness: the **Petersen graph** — `c = 9`, every 2-factor is `5+5`, so size 10 has
+> Smallest witness: the **Petersen graph**: `c = 9`, every 2-factor is `5+5`, so size 10 has
 > minimum component count 2. All 24 failures found over the 3,247 three-connected cubic graphs on
 > `n ≤ 16` have `L = n = c+1`. **With `L ≤ c` imposed: 0 failures.** So the correct window is
 > `c/2 < L ≤ c`, tight at both ends (the lower end by T(Petersen): two disjoint triangles give a
 > 2-regular subgraph of size 6 with no 6-cycle, and `6 < c/2 = 13.5`).
 
 **Useful algebraic fact.** In a cubic graph every element of the GF(2) cycle space has all degrees
-even and `≤ 3`, hence in `{0,2}` — **the cycle space *is* the set of 2-regular subgraphs**, and it
+even and `≤ 3`, hence in `{0,2}`, so **the cycle space *is* the set of 2-regular subgraphs**, and it
 is enumerable in `2^(n/2+1)` steps. Since `|H Δ D| = |H| + |D| − 2|H ∩ D|`, a size-preserving move
 is exactly a `D` with
 
-> `|D| = 2|D ∩ H|`  — exactly half of `D`'s edges lie in `H`.
+> `|D| = 2|D ∩ H|`: exactly half of `D`'s edges lie in `H`.
 
 **What a two-path merge requires.** Let `H` have components `Z₁, Z₂`. By Menger, 3-connectivity
 gives three vertex-disjoint `Z₁`–`Z₂` paths `Q₁,Q₂,Q₃`. Using `Q_i, Q_j`, the attachment points cut
@@ -598,11 +598,11 @@ gives three vertex-disjoint `Z₁`–`Z₂` paths `Q₁,Q₂,Q₃`. Using `Q_i, 
 
 > `q ∈ {α+β, α+β′, α′+β, α′+β′}`
 
-— the two path lengths must sum to one of the four arc-sums (which come in complementary pairs
+That is, the two path lengths must sum to one of the four arc-sums (which come in complementary pairs
 summing to `L`). Three paths give three pairs, hence twelve targets. **Nothing in this uses
-`L > c/2`, which is why it cannot yet be a proof** — and the lemma is false without that hypothesis.
+`L > c/2`, which is why it cannot yet be a proof**, and the lemma is false without that hypothesis.
 Corollary: a merge along two *chords* of `H` preserves size only if both arcs are single edges,
-i.e. only via a 4-cycle — which is why chord-based merging almost never works.
+i.e. only via a 4-cycle, which is why chord-based merging almost never works.
 
 ### The single next step: the MERGE LEMMA
 
@@ -614,7 +614,7 @@ This is exactly (B) by induction on `t`. It is small, local, and falsifiable in 
 enumerate the cycle space, group 2-regular subgraphs by size, and check that within each top-half
 size class the component-count minimum is 1 and reachable by single-chord moves. If true,
 THD-for-Hamiltonian follows from (A) plus induction, and (A) looks like a subset-sum with abundant
-freedom. If false, the counterexample shows exactly what 3-connectivity must supply — at `n ≤ 16`,
+freedom. If false, the counterexample shows exactly what 3-connectivity must supply: at `n ≤ 16`,
 where everything is checkable. Do this **before** the deficiency-2 case, which the `n = 20` data
 shows needs `|S|` up to 5 and is the harder target.
 
@@ -624,13 +624,13 @@ Let `G` be cubic, `C` a cycle of length `m`, and `S` a family of `k` pairwise in
 ears (crossings allowed). The `2k` endpoints are automatically distinct and cut `C` into `2k` arcs;
 the two alternating arc systems give the only candidate cycles. **A′ (completeness):** for any two
 cycles `D, D′` sharing a vertex, `D′` arises from `D` by exactly such an exchange. So this framework
-is not one construction among many — it is the whole relation.
+is not one construction among many; it is the whole relation.
 
 - **Corollary A1** (why single ears fail, quantitatively): to descend by `Δ` from a cycle, the ear
   family must have total ear length `P ≥ (g − Δ)/2`.
 - **Corollary A3**: for `k = 2`, **both** exchanges are single cycles **iff the two ears cross**.
   This is exactly the Heawood phenomenon, now proved.
-- **Refuted:** "interlacement graph connected ⟹ both exchanges are single cycles" — false from
+- **Refuted:** "interlacement graph connected ⟹ both exchanges are single cycles": false from
   `k = 4`. Connectivity of the exchange is a genuine and severe extra constraint from `k = 3` on.
 
 ### An exact chord-diagram reformulation of the Hamiltonian case
@@ -641,7 +641,7 @@ arcs.
 
 **Alternation Lemma.** A cycle of `C ∪ S` using exactly the chords of `S` uses, at each endpoint,
 the chord and exactly one of the two incident arcs. Hence exactly `k` arcs are used, and **used arcs
-and gaps alternate around the circle** — so there are precisely two candidate alternating classes,
+and gaps alternate around the circle**, so there are precisely two candidate alternating classes,
 each giving a 2-regular subgraph, which is a cycle iff it is connected.
 
 Writing `d = n − ℓ` for the **deficiency**:
@@ -649,12 +649,12 @@ Writing `d = n − ℓ` for the **deficiency**:
 > `d = Σ_{gaps} (|G| − 1)`,  and for the two alternating classes  `d₁ + d₂ = n − 2k`,
 > equivalently `ℓ₁ + ℓ₂ = n + 2k`.
 
-**Gaps of length 1 are free** — they contribute 0 to `d`. So THD for Hamiltonian cubic graphs is
+**Gaps of length 1 are free**: they contribute 0 to `d`. So THD for Hamiltonian cubic graphs is
 exactly: *for every `d < n/2` of the correct parity, some chord set admits an alternating class with
 `Σ(|G|−1) = d` that is connected.*
 
 Verified on the **Heawood graph** (LCF `[5,−5]⁷`): the identities hold, and chord sets of size
-`k ≤ 4` already realise deficiencies `{0,2,4,6}`, i.e. cycle lengths `{8,10,12,14}` — the entire even
+`k ≤ 4` already realise deficiencies `{0,2,4,6}`, i.e. cycle lengths `{8,10,12,14}`, the entire even
 top half. Its 12-cycle comes from `k = 2` with the **crossing** chords `(0,5)` and `(3,12)`, whose
 four endpoints cut `C` into arcs `3,2,7,2`; the alternating class `{2,2}` gives `d = 2`, `ℓ = 12`.
 The other class `{3,7}` gives `d = 8`, `ℓ = 6`, and `6 + 12 = 18 = n + 2k` ✓.
@@ -662,14 +662,14 @@ The other class `{3,7}` gives `d = 8`, `ℓ = 6`, and `6 + 12 = 18 = n + 2k` ✓
 This is a purely combinatorial statement about a perfect matching on `n` points of a circle, with no
 graph theory left in it, and it is the most concrete target the programme has produced.
 
-## 3d. The Ear Subset-Sum Conjecture — REFUTED, with the anatomy
+## 3d. The Ear Subset-Sum Conjecture: REFUTED, with the anatomy
 
 *Conjecture (mine).* For a longest cycle `C` of a 3-connected cubic graph, some family of
 pairwise **independent** ears has all decrements `δᵢ ≤ 2` and `Σδᵢ ≥ c/2`.
 (Here an ear `P` spanning arcs `a`, `c−a` gives cycles `a+|P|` and `(c−a)+|P|`; maximality of `C`
 forces `|P| ≤ min(a, c−a)`, so both decrements `δ = a−|P|` and `δ' = (c−a)−|P|` are `≥ 0`.)
 
-**Proposition (refutation).** *Every Hamiltonian cubic graph of girth `g ≥ 5` refutes it — no ear
+**Proposition (refutation).** *Every Hamiltonian cubic graph of girth `g ≥ 5` refutes it: no ear
 of the Hamiltonian cycle has decrement `≤ 2` at all.*
 
 *Proof.* If `C` is Hamiltonian there are no bridges, so every ear is a **chord**, `|P| = 1`. A chord
@@ -690,28 +690,28 @@ snarkhunter):
 | existential: *some* cycle of length `ℓ+1` **or** `ℓ+2` descends | 0 / 149 at `n ≤ 12`; **1 / 1023 at `n = 14`** |
 
 The single `n = 14` failure is again the **Heawood graph**: it has 12-cycles, it has 24 Hamiltonian
-cycles, it has no 13-cycles (bipartite) — and from *every* Hamiltonian cycle the single-ear
+cycles, it has no 13-cycles (bipartite), and from *every* Hamiltonian cycle the single-ear
 reachable set is exactly `{6, 10}`. Its 12-cycles require **two** chords.
 
-**Diagnosis — three separate design errors.**
+**Diagnosis: three separate design errors.**
 1. *Decrements off a longest cycle are large, not small.* `δ ≤ 2` needs a "balanced theta"
    (`|P| ≈ a`), which the Proposition above shows is impossible from chords at girth ≥ 5.
 2. *Independence is scarce.* Two exchanges through the same bridge share vertices, so at most one
    is usable per bridge, and a longest cycle has at most `c/3` bridges. Petersen has exactly one
    usable small exchange (`δ = 1`, giving its 8-cycle) and needs 5.
-3. *Crossing ears are the ones that matter* — and "independent" explicitly excluded them. Heawood's
+3. *Crossing ears are the ones that matter*, and "independent" explicitly excluded them. Heawood's
    12-cycles are built from two **crossing** chords.
 
 **What survives.** The exchange inequality `|P| ≤ min(a, c−a)` and the subset-sum density lemma are
 both correct; only the hypothesis they were to be applied to is false. **Top-Half Density (§3e) is
-untouched** — Heawood satisfies it (evens in `(7,14]` are 8, 10, 12, 14, all present) — but it now
+untouched**: Heawood satisfies it (evens in `(7,14]` are 8, 10, 12, 14, all present), but it now
 has no proposed proof.
 
 **Corrected target.** Bounded families of *possibly crossing* ears. In the Hamiltonian case this is
 exactly a chord-diagram problem: a cycle in `C ∪ S` for a chord set `S` has length
 `(sum of arcs used) + |S|`, and the question is whether these cover every even length in `(c/2, c]`.
 
-## 3c. The one family that is genuinely inside the hypothesis — and nearly kills DWL
+## 3c. The one family that is genuinely inside the hypothesis, and nearly kills DWL
 
 The adversarial sweep found exactly one construction that is **cyclically 4-edge-connected** and
 stays fragile as `n → ∞`: the **necklace of squares** (`k` disjoint 4-cycles joined by a perfect
@@ -724,7 +724,7 @@ matching), for `n ≡ 4 (mod 8)`. Bipartite, vertex-transitive, girth 4, Hamilto
 | 44 | 4,6,10,14,18,22,24,…,44 | 8,12,16,20 | `{21,22}` |
 | 52 | 4,6,10,14,18,22,26,28,…,52 | 8,12,16,20,24 | `{25,26}` |
 
-`|W| = 2` at every size — always the top two windows `a = (n−2)/2` and `a = n/2` — so
+`|W| = 2` at every size (always the top two windows `a = (n−2)/2` and `a = n/2`), so
 `|W| / (c/2) → 0`. This is by far the sharpest fragility anywhere in the project.
 
 **And the margin is a constant 3.** Let `M` be the largest multiple of 4 with all of `8,12,…,M`
@@ -736,8 +736,8 @@ inequality
 
 That isolates DWL's entire difficulty into one statement. The family stays safe only because it is
 Hamiltonian (`c = n`); a **non-Hamiltonian** necklace of squares with the same suppression would
-refute DWL outright. The symmetric censuses cannot supply one — every known member is
-vertex-transitive, and by Lovász's conjecture those are Hamiltonian — so the kill, if it exists,
+refute DWL outright. The symmetric censuses cannot supply one: every known member is
+vertex-transitive, and by Lovász's conjecture those are Hamiltonian, so the kill, if it exists,
 must come from an *asymmetric* necklace, a space nobody has searched.
 
 ### Exhaustive verification supporting DWL
@@ -746,8 +746,8 @@ must come from an *asymmetric* necklace, a space nobody has searched.
 |---|---|---|
 | all connected cubic graphs, n ≤ 22 | **7,875,918** (matches A002851 term by term) | 0 |
 | all **cyclically 4-edge-connected** cubic graphs, n ≤ 22 | **1,280,921** (two independent censuses agree exactly) | **0** for every `a₀ ∈ [5,15]` |
-| all cubic bipartite graphs, n ≤ 22 | 5,044 | 0 — their even spectra are *dense* |
-| all 4-terminal gadgets from cubic graphs on ≤ 16 vertices | 86,425 | max gcd of path-length differences is **2**, never ≥ 3 — kills "all lengths ≡ 0 mod d" for substitution |
+| all cubic bipartite graphs, n ≤ 22 | 5,044 | 0; their even spectra are *dense* |
+| all 4-terminal gadgets from cubic graphs on ≤ 16 vertices | 86,425 | max gcd of path-length differences is **2**, never ≥ 3, which kills "all lengths ≡ 0 mod d" for substitution |
 
 `a₀ = 5` **exactly**: Petersen refutes `a₀ ≤ 4` (at `a₀=4` it is in scope, `c = 9 ≥ 8`, and its only
 admissible window `[4,8]` needs a 4-cycle it does not have); nothing anywhere forces `a₀ ≥ 6`.
@@ -766,17 +766,17 @@ one). All results quoted above are *positive* window certificates, which are una
 ## 4. Corrections and dead ends established by refereeing
 
 - **`D ≈ 2.4·girth` is REFUTED** (see the retraction box in `RESULTS.md` §5d).
-- **Interval-*meeting* theorems cannot prove EG** — Corollary B. Retires the gap programme.
+- **Interval-*meeting* theorems cannot prove EG** (Corollary B). Retires the gap programme.
 - **A minimal cubic counterexample cannot be forced to be cyclically 4-edge-connected.** Any
   triangle gives a cyclic 3-edge-cut whose small side is a triangle; and EG-free 3-fragments exist
-  (e.g. order 15, `NO?_Sa@AGog_@@O_?OW`, spec = 3,5,6,7,9,…,15 — no C4, no C8). All four 24-vertex
+  (e.g. order 15, `NO?_Sa@AGog_@@O_?OW`, spec = 3,5,6,7,9,…,15: no C4, no C8). All four 24-vertex
   near-misses have cyclic edge connectivity exactly 3. **The ceiling of the connectivity route is
   3-connected.** Do not attempt 3-cut discharging.
 - **Every side-local reduction across a 2- or 3-edge-cut is provably dead**: for any finite set `A`
   of path lengths there is a `t` with `A + t` containing no power of two, so no argument about one
   side alone can give a contradiction, and swapping a side for a smaller gadget can create or
   destroy `2^k` cycles at will. Bridges are the exception precisely because the crossing family is
-  empty — which is why the bridge case does reduce.
+  empty, which is why the bridge case does reduce.
 - **My `gadget.c` completeness comment was wrong in general.** A 1-terminal fragment whose terminal's
   two neighbours are adjacent *and* whose third neighbours coincide or are adjacent falls in neither
   enumerated family (witness `HyKOOKF`, n = 9; ~3–9% of all 1-fragments). **But that missing case
@@ -786,7 +786,7 @@ one). All results quoted above are *positive* window certificates, which are una
   were **truncated**: their 14 shards each stopped near 50M bases where the census demands
   2.09×10⁹ / 4.05×10¹⁰, and the driver printed "DONE" regardless. Only orders **≤ 25** are certified
   (base counts reconcile exactly: 7,319,447 for n=22 and 117,940,535 for n=24). So the correct
-  claim is **f(1) ≥ 27, hence no bridged cubic counterexample on ≤ 52 vertices** — not 56.
+  claim is **f(1) ≥ 27, hence no bridged cubic counterexample on ≤ 52 vertices**, not 56.
   *Lesson, now standing policy: every sharded sweep must have its per-shard "graphs generated"
   totals reconciled against the known census count before its result is quoted.*
 
@@ -803,17 +803,17 @@ proved today raises it.**
 | Cubic, girth 5, no `C6,C7,C8` ⟹ `n ≥ 40` | **PROVED** (§1.1) |
 | Every cubic graph of girth 5 has a cycle of length 6, 7 or 8 | **REFUTED** (§1.2, n = 122) |
 | Every cubic graph has a cycle of length in `B` (truncation route) | open; not refuted |
-| min degree 3 ⟹ cycle ≡ 0 mod 4 | **KNOWN** (Dean–Lesniak–Saito 1993) — kills all modular routes |
+| min degree 3 ⟹ cycle ≡ 0 mod 4 | **KNOWN** (Dean–Lesniak–Saito 1993); kills all modular routes |
 | Spectrum contains an interval `[a,2a]` | **FALSE** (Merker) |
-| Local/ball-growth proof of EG | **Explained to be futile** (§2) — a heuristic with a sharp mechanism, not a formal impossibility theorem |
+| Local/ball-growth proof of EG | **Explained to be futile** (§2): a heuristic with a sharp mechanism, not a formal impossibility theorem |
 
-## §5 (2026-08-04) — Closure of the girth-≥7 branch of T(3), m ≥ 3
+## §5 (2026-08-04) Closure of the girth-≥7 branch of T(3), m ≥ 3
 
 Chain: (1) girth-≥7 minimal T(3) counterexamples force a subdivided-K₃,₃ skeleton
 with corridor lengths ≡ 3 (mod 8) [frozen-lattice phase]. (2) Inevitable-web
 theorem (QC-LDPC balanced walks): any pure corridor-pair class with ≥ 4 edges
 carries a cycle ≡ 0 (mod 8); with Purity, every cross-corridor class has ≤ 3
-edges — completions are internal-heavy for m ≥ 3. (3) Menu-poor pair census:
+edges; completions are internal-heavy for m ≥ 3. (3) Menu-poor pair census:
 ≤ 1 cross foot per corridor. (4) Stacked through-web weapon (P = k + ℓ − ΣΔ):
 even-span cases α (≡0) and β (≡4) die; Universal Odd-Span Law: all internal
 spans ≡ 1 (mod 8). (5) LEFT-INDUCTION KILL: offsets 1..9 are forced lefts;
@@ -828,7 +828,7 @@ Residuals: (i) m ≤ 2 finite check (ℓ = 11, 19 template completions; oracle);
 skeleton-forcing rigor from the frozen-lattice phase; (iii) girth-3/5/6 branches
 of T(3); tower j ≥ 4; EG itself. All open.
 
-## §6 (2026-08-04) — Girth-6 branch: hexagon-ball theory and the theta-web death
+## §6 (2026-08-04) Girth-6 branch: hexagon-ball theory and the theta-web death
 
 Minimal T(3) counterexample, girth 6. Proved chain: (1) Hexagon-Ball Structure
 Theorem: radius-2 identifications only through opposite-pair channels (open /
@@ -838,7 +838,7 @@ saturated; transit menus {1,5},{2,4,6},{3,5} by terminal-pair type. (3) Pure
 theta-webs (all terminals matched to theta-internals): the web multigraph W is
 6-regular; mod-8 cycle arithmetic forces: no self-connectors (girth), double-
 connectors parity-typed, triple connectors impossible, Double-Double Theorem
-(7-case enumeration — no theta has two double-connectors), letter-voltage
+(7-case enumeration: no theta has two double-connectors), letter-voltage
 holonomy laws, Figure-Eight Theorem (no two cycles meet at exactly one theta;
 4-same-letter impossibility closes the last dodge). (4) Consequences: W simple,
 2-connected (handshake), kappa(u,v) <= 3 for all pairs, theta path-parities
@@ -850,7 +850,7 @@ saturated girth-6 counterexamples do not exist. Folded/open phases remain open
 (supply-flux + Z*-exterior machinery staged; Z*-ear tables, exterior path
 theorem, hexagon meeting laws t in {2,3,4}, hexagon pair law banked).
 
-## §7 (2026-08-04) — Sunflower case: the 3-petal cascade closes
+## §7 (2026-08-04) Sunflower case: the 3-petal cascade closes
 
 Unconditional foundation: minimal T(3) counterexample; supply dichotomy
 (two disjoint ≡4-cycles, or all pairwise intersect). Sunflower (intersecting)
@@ -863,10 +863,10 @@ off-diagonal pairs (g1,g2), (qa,qb), (q'a,q'b); all-or-nothing via the
 6-quad coverage identity (histogram {15,18} explained). (2) Leak-ladders =
 petal chords; odd arc-distances banned (ear laws); Universal Ladder Law
 |du|+|dv| != 6 (mod 8). (3) Strata: single-rung route-lattice (16-30 of 64
-classes survive — no kill); route-pair webs kill (0,0)-classes in 2,380
-orbits (R1+R2 = -2-gA-gB test); strata-tower — odd-rung webs (1,3,5,7;
+classes survive, no kill); route-pair webs kill (0,0)-classes in 2,380
+orbits (R1+R2 = -2-gA-gB test); strata-tower: odd-rung webs (1,3,5,7;
 constants step by 2; ban full parity-classes) + even-rung webs (2..8; cover
-all targets of parity gA+gB) — kills ALL remaining leaks: 0/3,672 survive.
+all targets of parity gA+gB) kill ALL remaining leaks: 0/3,672 survive.
 CONCLUSION (modulo flagged validity passes on multi-rung web disjointness):
 in the sunflower case every cross-corridor class of the forced K3,3 is
 O(1)-bounded for every residue pattern; at scale the configuration is
@@ -877,10 +877,10 @@ tables, Left-Induction shape) operate. Open: tube war (disjoint case),
 §7 addendum: validity audit of the strata-tower discharged. Multi-rung walk
 disjointness verified in both ladder orientations; tower-step/menu
 correspondence verified; an orientation conflation in the stratum-3 test was
-found and corrected — the corrected (weaker, honest) condition still yields
+found and corrected; the corrected (weaker, honest) condition still yields
 0/3,672 surviving leaks. The sunflower 3-petal capping stands.
 
-## §8 (2026-08-04) — Tube war: the Tube Cap Theorem
+## §8 (2026-08-04) Tube war: the Tube Cap Theorem
 
 Disjoint case of the supply dichotomy: C1, C2 vertex-disjoint cycles ≡ 4
 (mod 8). Pair-system (four arc-choice conditions) + psi-parity (k >= 3
@@ -897,11 +897,11 @@ supply cycles in a minimal counterexample. Next: bounded-cut side
 analysis. Open: >= 4-petal sunflowers, per-branch internal finishes,
 tower j >= 4, EG.
 
-## §9 (2026-08-04) — f = 2 plugs: circularity, nonexistence, the 2-cut law
+## §9 (2026-08-04) f = 2 plugs: circularity, nonexistence, the 2-cut law
 
 Cut-gadget program, f = 2. (1) PLUG CIRCULARITY: a frozen 2-plug with
 r != 7 (mod 8) closes (join half-edges) to a min-degree-3, C4-free,
-mod-8-free graph — a T(3) counterexample; minimality bans such plugs
+mod-8-free graph, a T(3) counterexample; minimality bans such plugs
 smaller than G. (2) NONEXISTENCE: no frozen 2-plug with internal vertices
 exists at all: 3-connected frozen pieces die by the potential argument
 (every edge-length forced ≡ 0 mod 4; real edges are length 1; virtual
@@ -914,12 +914,12 @@ in a minimal counterexample every 2-cut side-menu avoids residue 1 (mod 8).
 Frozen-block ear laws banked (mirror law; cross-ear mod-4 pinning).
 Next: f = 3 (claw law, frozen 3-plug SPQR analysis).
 
-## §10 (2026-08-04) — Tube endgame: menu laws, rigidity, the Case-A table
+## §10 (2026-08-04) Tube endgame: menu laws, rigidity, the Case-A table
 
 2-cut analysis of the disjoint case. Laws: edge law (7 ∉ M⁰ each side),
 sumset law (M_X + M_Y ∌ 6 mod 8), Block-Menu Lemma (every nontrivial block
-menu has a mod-4-spread pair; frozen and mod-4-frozen blocks don't exist —
-§9 machinery), Menu-Fatness (≥ 3 nontrivial blocks ⟹ same-parity 4-coset),
+menu has a mod-4-spread pair; frozen and mod-4-frozen blocks don't exist,
+by §9 machinery), Menu-Fatness (≥ 3 nontrivial blocks ⟹ same-parity 4-coset),
 2-Cut Chain Law (some side thin). Case analysis: both-fat dead; fat+thin
 = ONE rigid shape (fat-even {0,2,4,6} chain vs thin {1,3}-menu d=2
 chord-block, d-chord spans forced ≡ 3 mod 8, d-chord cycles ≡ 4 = the
@@ -927,13 +927,13 @@ avoider backbone; Supply-Parity Lemma: threading ≡4-cycles impossible,
 avoiders localize). Both-thin: odd-odd annihilated (all spread-pair
 combinations in {1,3,5} hit 6); mechanical enumeration: 117 eligible
 menus, 942 law-surviving pairs, 420 sumset-realizable, 68 maximal
-realizable pairs (34 unordered) — the complete Case-A table. Chord-Block
+realizable pairs (34 unordered): the complete Case-A table. Chord-Block
 Structure Theorem banked (d-ear Helly clustering; base + chord matching;
 nested d-towers ≤ 2 hot spots + mirror-sea spans ≡ 1 mod 8). Remaining:
 recursion into block poles (2-cuts: laws recurse; descent to census
 bounds), ≥ 4-petal sunflowers, per-branch internal finishes, tower, EG.
 
-§10 addendum — Universal 2-Cut Law System (laws hold at every 2-edge-cut;
+§10 addendum: Universal 2-Cut Law System (laws hold at every 2-edge-cut;
 SPQR descent; terminal trichotomy: census-small / 3-connected / cyclically-
 4-connected cores). f = 3 stage armed: Steiner star-parametrization of
 side-cores (m_ij = sigma_i + sigma_j; path-cores are degenerate stars);
@@ -943,29 +943,29 @@ on combined legs; enumeration: 342/512 rho-triples (80 sorted patterns),
 cyclically-4-connected core war, >= 4-petal sunflowers, per-branch internal
 finishes, tower j >= 4, EG.
 
-§10 addendum 2 — Core war opened: Core Frame Theorem (cyclic-4-connectivity
+§10 addendum 2. Core war opened: Core Frame Theorem (cyclic-4-connectivity
 forces the k=4 tube-frame; edge-disjoint = vertex-disjoint in cubic).
 Frame residue scan (straight twist): 2^30 assignments; 45.1M web-safe
 (pair- and 4-webs != 0); 25.5M also carry full avoider coverage (== 4 webs
-avoiding every gap edge) — the frame survives at residue level (2.4%);
+avoiding every gap edge); the frame survives at residue level (2.4%);
 kill deferred to interior strata (corridor attachment/chord wars inside
 the frame), twist classes, and boundary rho-laws. The season's pattern
 holds: local systems survive, depth kills. Queued: frame-interior strata,
 >= 4-petal sunflowers, per-branch internal finishes, tower j >= 4, EG.
 
-§10 addendum 3 — Cube-template war: Cube Template Theorem (k=4 frame =
+§10 addendum 3. Cube-template war: Cube Template Theorem (k=4 frame =
 subdivided Q3; frame scan = cube cycle space; u/v-faces hot by anchors).
 Anchor-Cap Theorem: all mixed-type classes (g-s, g-h, h-s) capped <= 3
 unconditionally via the hot anchor faces + quad-identity. Strata vs the
 ten disjoint same-type leaks (opposite gaps, all spoke-pairs): 4,000
-sampled web-safe patterns, zero surviving leaks — sample-universal death
+sampled web-safe patterns, zero surviving leaks: sample-universal death
 (full-sweep/hand-proof = confirmation debt). Remaining: 8 adjacent
 gap-pairs (hatch-variant strata), then the core-terminal analysis.
 
-§10 addendum 4 — Adjacent-leak pass: hatch-variant strata (through-vertex
+§10 addendum 4. Adjacent-leak pass: hatch-variant strata (through-vertex
 tower bans all odd i+j same-class ladders pattern-free; far-tower parity
 coverage; (0,0)-kill vs far-route menus). Sampled 4,000 web-safe patterns:
-3,846 fully capped (96.2%); 133 keep one adjacent leak, 21 keep two —
+3,846 fully capped (96.2%); 133 keep one adjacent leak, 21 keep two:
 explicit surviving family with all far-routes parity-locked to gA+gB and
 kill-target missed. Cube-template status: mixed classes capped
 unconditionally (anchors); disjoint same-type leaks dead sample-
@@ -973,51 +973,51 @@ universally; adjacent leaks dead at 96%, survivors explicit. Remaining:
 deeper strata on the ~4% survivor family, then core-terminal reduction
 (bounded cross-structure over internal-heavy corridors, Left-Induction).
 
-§10 addendum 5 — Joint bookkeeping: Triangle-Web Theorem (rung-class c
+§10 addendum 5. Joint bookkeeping: Triangle-Web Theorem (rung-class c
 dies vs internal span Δ ≡ c+2 on either leak corridor, through-vertex
 3-segment cycle). Even-span pattern law: corridor with all even spans
 banned by around-menu forces all-odd internal matching. Sampled: 93.0%
 of web-safe patterns die by the even-span law [CONDITIONAL on the
 mixed-odd closure debt: Left-Induction is banked for uniform ≡1 spans;
-mixed-odd (1,3,5) needs the cube's odd-uniformity theorem — the 2-around
+mixed-odd (1,3,5) needs the cube's odd-uniformity theorem, i.e. the 2-around
 cross-corridor tables relativized to cube routes, underived]. Of the
-rest: 270/282 patterns keep zero leaks; 12 patterns (0.3%) keep 1-2 —
+rest: 270/282 patterns keep zero leaks; 12 patterns (0.3%) keep 1-2:
 the cube-template's entire surviving family. Next: pay the mixed-odd
 debt; then the 12-pattern residual; then core-terminal descent.
 
-§10 addendum 6 — CORRECTION: the singleton span-CSP (allowed spans minus
+§10 addendum 6. CORRECTION: the singleton span-CSP (allowed spans minus
 within-D and cross-B bans over the cube) is satisfiable in 300/300 sampled
 patterns: the mixed-odd closure debt is NOT payable at residue level, and
 the even-span law's 93% is downgraded from "dead" to "forced-all-odd on
 some corridor." The cube war now gates on the MIXED-ODD MATCHING PROBLEM:
 position-level existence of perfect internal matchings with spans in
-{1,3,5} mod 8 under the universal tables + around-bans — a mixed-span
+{1,3,5} mod 8 under the universal tables + around-bans; a mixed-span
 Left-Induction analogue is the target; the uniform case is banked, the
 mixed case is open. This wall also touches the internal finishes.
 
-§10 addendum 7 — Mixed-odd attack: corrected crossing table (ban
+§10 addendum 7. Mixed-odd attack: corrected crossing table (ban
 diff ≡ −2−2d; unequal forced only at d ≡ 3 mod 4). REFUTATION: the
 alternating {1,3} span-sequence survives ALL pairwise crossing
-constraints at every distance — the Left-Induction engine fails against
+constraints at every distance; the Left-Induction engine fails against
 mixed-odd; the window is unbounded. The mixed-odd matching problem is
 open in both directions and gates the cube war: existence revives the
 93% forced-all-odd patterns (live all-odd cores); nonexistence must come
 from 3-webs/rotors/around-bans. Next: explicit alternating-span
 candidate vs the complete law-set.
 
-§10 addendum 8 — The mixed-odd gate, bulk level: SFT/periodic-point
+§10 addendum 8. The mixed-odd gate, bulk level: SFT/periodic-point
 reduction (bounded-span bulk existence ⟺ periodic pattern existence);
 nested direction law (outer ≢ inner − 2); no-odd-cycles theorem (pairwise
 arguments provably cannot close the gate); mixed rotor law
 (2(x_C − x_A) ≡ −3 + Δ_A + Δ_B − Δ_C). EXECUTED: 16 periodic mixed-odd
 patterns exist (periods 4, 6; residues {1,5}, {3,5}) surviving pairwise +
-nested + rotor laws — the bulk door is OPEN (a comparison-bug false
+nested + rotor laws: the bulk door is OPEN (a comparison-bug false
 negative was caught and fixed mid-run). Uniform bricks also bulk-survive;
 the uniform kill was boundary-borne. The gate therefore reduces to the
 BOUNDARY DECISION per cube-pattern: bulk patterns vs forced-left prefix +
 around-bans + boundary webs. Next: mechanize the boundary check.
 
-§10 addendum 9 — Boundary decision (N=40 full-corridor DFS, pairwise +
+§10 addendum 9: Boundary decision (N=40 full-corridor DFS, pairwise +
 nested + rotor + D-bans, all 112 (A,D)-combos decided, no timeouts):
 uniform odd corridors ALL die at the boundary (extends the internal-war
 kill to residues 3, 5); the alternating {1,3} bulk pattern DIES at the
@@ -1025,10 +1025,10 @@ boundary; {3,5} dies. Completability iff A = {1,3,5} (any D) or
 A = {1,5} with D ∩ {2,6} = ∅ (D ⊆ {0,4}). Corridor-death test refined
 accordingly. Flagged: other corridor-length residue classes (N ≡ g_c − 1
 mod 8) need reruns. Next: map the refined test over the cube-pattern
-sample; surviving patterns' corridors are explicitly completable — the
+sample; surviving patterns' corridors are explicitly completable: the
 candidate all-odd cores.
 
-## §11 (2026-08-04) — The corridor-completability criterion closes
+## §11 (2026-08-04) The corridor-completability criterion closes
 
 Chain (all by hand): Spin Reformulation (Ising rules for the {1,5}-family);
 Frustration + Nesting-Density; Laminar decomposition (seals; parity-
@@ -1047,7 +1047,7 @@ D-hit corridors dead; the completability criterion is COMPLETE.
 Flags: local-periodicity rigor, non-periodic tiling bookkeeping,
 moderate-n (9-30) forced-chain extensions.
 
-## §12 (2026-08-04) — Boundary-web ban law; the war narrows to hot cycles
+## §12 (2026-08-04) Boundary-web ban law; the war narrows to hot cycles
 
 Adjacent-leak corridor, coords from shared vertex u: chord (i,j), span
 D = j-i odd. Near web L1 = 1+i+j: bans (D+2i) in {7,3} UNCONDITIONALLY
@@ -1064,7 +1064,7 @@ r(i)+i in {1,5} density argument): cold-cycle patterns = the war's
 final enemy. Next: test all-three-cold u-faces against the avoider
 demand of the frame scan.
 
-## §13 (2026-08-04) — Twisted Gate killed: 5-Rung Rigidity; adjacent leaks close
+## §13 (2026-08-04) Twisted Gate killed: 5-Rung Rigidity; adjacent leaks close
 
 Length-class sweep (bkgd): alive cells only at gc=1 (mod 8) (N=40:
 {1,5}x4, {1,3,5}x16); N=42/44/46: zero confirmed alive (10-12 unknowns
@@ -1087,7 +1087,7 @@ unproved) - next front: boundary-web treatment (no shared vertex:
 both ends route-dependent; both boundary cycles odd => A={1,3,5} full
 => those need the disjoint-strata kills made unconditional).
 
-## §14 (2026-08-04) — Disjoint-leak dichotomy; survivor = all-even subspace
+## §14 (2026-08-04) Disjoint-leak dichotomy; survivor = all-even subspace
 
 Disjoint branches ab, cd: both boundary webs route-dependent; active
 webs delete {c,c+4}-pairs of (i+j)-classes. Dichotomy: both-active
@@ -1101,7 +1101,7 @@ conditions). Avoider demand consistent (hot = 4 = even): kill must
 come from finer structure. NEXT: the all-even family vs the strata
 laws (hatch/dsum/odd-span) made unconditional on this family.
 
-## §15 (2026-08-04) — Hatch-pigeonhole: full-menu death; all classes O(1)
+## §15 (2026-08-04) Hatch-pigeonhole: full-menu death; all classes O(1)
 
 Full-menu corridors obey 4-rung hatch webs: equal-spaced quadruples
 x,x+t,y,y+t with equal r-differences D (pigeonhole) give hatch total
@@ -1118,7 +1118,7 @@ endgame engaged. Open toward T(3): endgame assembly, sunflower
 >=4-petal, girth-3/5 branch completions, l=11/19 residuals,
 moderate-n rainbow, comb rigor flags, {1,3}/{3,5} all-length flags.
 
-## §16 (2026-08-04) — Common-segment descent: sunflower closes in full
+## §16 (2026-08-04) Common-segment descent: sunflower closes in full
 
 Degenerate sunflower triples (common segment P, generalized theta):
 pick e' mid-P; supply Z_e' avoids e', meets all petals (sunflower
@@ -1137,7 +1137,7 @@ hexagon, hatch arc-validity, {1,3}/{3,5} all-length, moderate-n
 rainbow (9-30), 3-petal hypothesis match; (4) tower j>=4 (beyond
 T(3)). T(3) NOT YET PROVED.
 
-## §17 (2026-08-04) — Big picture; Companion-Swap Confinement Theorem
+## §17 (2026-08-04) Big picture; Companion-Swap Confinement Theorem
 
 BIG PICTURE: T(3) = (1) bounded frame-CSP (tube: prism/Moebius frames,
 O(1)-capped rungs; corridor excess dead by two frame-independent
@@ -1157,7 +1157,7 @@ largely bypassed). NEXT: re-run the frame-CSP alive-count under
 4-pair-free menus; decoration-forcing on branches (every subdivision
 vertex decorated) vs confinement. T(3) NOT YET PROVED.
 
-## §18 (2026-08-04) — Boundedness: T(3) reduces to a finite problem
+## §18 (2026-08-04) Boundedness: T(3) reduces to a finite problem
 
 SUBSET-SUM CAP: hot cycle crossing decorations with 4-pair-free
 swap-shifts d_i (all != 0 mod 4): companions at 4 + subset-sums must
@@ -1173,7 +1173,7 @@ T(3) = finite problem. Census covers n <= 20 only: gap (20, N0]
 too large to enumerate: T(3) NOT YET PROVED. Route: tighten
 constants + the two finite lemmas + bounded-shape CSP kills.
 
-## §19 (2026-08-04) — The rut-breaker: Safe-Surgery Descent Lemma
+## §19 (2026-08-04) The rut-breaker: Safe-Surgery Descent Lemma
 
 RUT: boundedness gives n <= N0 ~ 10^3-4; census n <= 20; gap dead
 ground. KEYSTONE (conjectured): every C4-free mod-8-free cubic graph
@@ -1191,7 +1191,7 @@ config) => sunflower-type kills constrain blockers. Local-law tables
 (hexagon-ball, pair, Z*-ear) = the verification toolkit.
 STATUS: T(3) NOT YET PROVED; this lemma is the designated crux.
 
-## §20 (2026-08-04) — Safe-Surgery attack: parity split; bipartite dies
+## §20 (2026-08-04) Safe-Surgery attack: parity split; bipartite dies
 
 PARITY SPLIT: cycle sums preserve parity => odd/even blocker worlds
 independent. BIPARTITE BRANCH: no odd blockers; 6-cycle blockers
@@ -1209,7 +1209,7 @@ DISJUNCTIVE FORM: safe surgery OR saturation, and saturation dies
 bounding; (b) hypothesis-match flags; (c) census base may need
 extension beyond 20. T(3) NOT YET PROVED.
 
-## §21 (2026-08-04) — Far-share anatomy; Arc-Pairing Law; share-graph CSP
+## §21 (2026-08-04) Far-share anatomy; Arc-Pairing Law; share-graph CSP
 
 Far-share pair (co-edge e3 + far edge f, no runs): divergence forced
 at all four contact vertices (2-run ban) => pair exhausts local
@@ -1222,7 +1222,7 @@ the odd branch's residual CSP (corridor-shaped). LEMMA STATE:
 bipartite dead; braids dead; pentagons capped; far-share = last
 enemy; disjunctive salvage stands. T(3) NOT YET PROVED.
 
-## §22 (2026-08-04) — Bundle caps; CORRECTION on braid-death scope
+## §22 (2026-08-04) Bundle caps; CORRECTION on braid-death scope
 
 4-CLASS BUNDLE THM: blockers through an edge split into <= 4
 continuation classes (cubic degrees); same class => shared 2-run.
@@ -1235,7 +1235,7 @@ CORRECTION to SS20: hatch-pigeonhole kills REPEATED-return braids
 negation, with the share-graph CSP. Disjunctive salvage stands with
 larger residual. T(3) NOT YET PROVED.
 
-## §23 (2026-08-04) — Creative reframing: circuit functionals; global identity
+## §23 (2026-08-04) Creative reframing: circuit functionals; global identity
 
 TREADMILL DIAGNOSIS: all weapons local; small configs locally alive
 (25.5M scan patterns) => local tools cannot empty the family; missing
@@ -1254,7 +1254,7 @@ component pollution; fix candidate: Potts/flow-polynomial component
 weighting. NEXT: develop deletion-contraction for circuit
 functionals; component-weighted enumerator. T(3) NOT YET PROVED.
 
-## §24 (2026-08-04) — 8-generic theory: the gauge theorem
+## §24 (2026-08-04) 8-generic theory: the gauge theorem
 
 DEF: (G,l) 8-generic iff every circuit sum != 0 (mod 8). T(3)
 counterexample = cubic 8-generic with l=1 (+C4 side condition).
@@ -1267,7 +1267,7 @@ calculus; excluded-minor characterization of 8-generic-admitting
 cubic graphs; component-weighted (Potts) enumerator. T(3) NOT YET
 PROVED.
 
-## §25 (2026-08-04) — The W-class; Ear-Menu framework; T(3) = Menu-Filling
+## §25 (2026-08-04) The W-class; Ear-Menu framework; T(3) = Menu-Filling
 
 W-CLASS: cubic multigraphs, l: E -> Z>=1, circuits avoid 8Z u {4}.
 T(3) <=> no W-graph with l = 1. DELETION-CLOSURE (proved): suppression
@@ -1285,11 +1285,11 @@ sunflower/K33 machinery); bipartite (even ears die at even-full
 menus, odd ears break purity; engine = girth-6 hexagon-ball/theta
 theory). All banked wars = special cases. T(3) NOT YET PROVED.
 
-## §26 (2026-08-04) — CORRECTION + Swap-Orbit Dichotomy; Parity Dichotomy
+## §26 (2026-08-04) CORRECTION + Swap-Orbit Dichotomy; Parity Dichotomy
 
 CORRECTION to SS25: menus = through-spectra {|C| - l(e)}; W bans
 |C| = 0 => menus NEVER full; Menu-Filling as stated was vacuous.
-REAL THEOREM — SWAP-ORBIT DICHOTOMY: menu = swap-orbit; diffs
+REAL THEOREM, SWAP-ORBIT DICHOTOMY: menu = swap-orbit; diffs
 generate H_e; full orbit + H_e = Z8 => 0 in through-spectrum:
 forbidden. So every edge: H_e proper ({0,4Z,2Z}) or orbit unfilled.
 Frozen dead (banked). ALL-ODD IMPOSSIBLE (ear on odd circuit gives
@@ -1299,7 +1299,7 @@ edge, dead modulo ORBIT-FILLING LEMMA (large + 2-connected + mixed
 => orbits fill cosets). T(3) = Orbit-Filling + bipartite girth-6
 endgame (hexagon-ball machinery's home turf). T(3) NOT YET PROVED.
 
-## §27 (2026-08-04) — Tower Recursion: T(3) reduces to Detour-Routing
+## §27 (2026-08-04) Tower Recursion: T(3) reduces to Detour-Routing
 
 Orbit-Filling as stated FALSE (nearly-pure counterexample: bulk +
 one odd ear, menus = two small cosets). FIX: tau-dichotomy absorbed
@@ -1317,7 +1317,7 @@ edge with a path + 7 disjoint odd detours. Flags: connectivity
 maintenance; exact-4 bookkeeping through halving; frozen at
 W-generality. T(3) NOT YET PROVED - kernel = Detour-Routing.
 
-## §28 (2026-08-04) — Odd-Detour Conversion; the Escher regime is the last shape
+## §28 (2026-08-04) Odd-Detour Conversion; the Escher regime is the last shape
 
 ODD-DETOUR CONVERSION LEMMA (proved): disjoint O-odd circuit D +
 two disjoint connecting paths: D's arcs have opposite O-parities =>
@@ -1332,7 +1332,7 @@ common-segment descent playbook on odd circuits [new table needed].
 T(3) funnels to: no large cubic W-graph is an odd-Escher-wall.
 T(3) NOT YET PROVED - kernel = odd-sunflower cascade.
 
-## §29 (2026-08-04) — Escher arm closes: walls are W-dead; skeleton complete
+## §29 (2026-08-04) Escher arm closes: walls are W-dead; skeleton complete
 
 Odd-sunflower locally alive (mixed-parity subdivided K33 legal) =>
 kill must use largeness; pairwise-intersection gives no bounded hub
@@ -1350,10 +1350,10 @@ exact-4 halving, frozen W-generality); F4 constants aligned (7=7);
 F5 inherited SS11-18 corridor flags. T(3): NOT YET PROVED - all
 remaining gaps are verification debts on named closed arguments.
 
-## §30 (2026-08-04) — Delta-Walk Theorem; Reed import eliminated; residual named
+## §30 (2026-08-04) Delta-Walk Theorem; Reed import eliminated; residual named
 
 CORRECTION: 7-pocket routing needs 7-linkage: impossible in cubic
-(F3a was substantive, not bookkeeping). FIX — DELTA-WALK THEOREM:
+(F3a was substantive, not bookkeeping). FIX (DELTA-WALK THEOREM):
 C <- C delta D (D odd, MEETING C) shifts value by |D| - 2t = odd;
 no routing needed; variety generates, monochromatic s reaches 0 in
 <= 7 steps => edges inside pairwise-meeting clusters of >= ~8 odd
@@ -1368,7 +1368,7 @@ banked SPQR/plug endgame. FINAL OPEN CELL: scattered-odd regime in
 3-connected-ish W-graphs (many disjoint small odd clusters; walk
 stalls, no linkage). T(3) NOT YET PROVED.
 
-## §31 (2026-08-04) — One-Cluster Theorem; the short chain
+## §31 (2026-08-04) One-Cluster Theorem; the short chain
 
 ONE-CLUSTER THEOREM (proved, 5 lines): disjoint odd D1, D2 in a
 2-connected graph: two disjoint paths, bridge-circuit C with parity
@@ -1383,7 +1383,7 @@ s=4-monochromatic rigidity (shift 4 reaches only {0,4} from {2,6});
 H4 connectivity under <= 7 deletions (easy); H5 exact-4 bookkeeping;
 H6 frozen at W-generality. T(3) NOT YET PROVED - six named holes.
 
-## §32 (2026-08-04) — Holes H1, H4, H5, H6 closed; H2 merged into H3'
+## §32 (2026-08-04) Holes H1, H4, H5, H6 closed; H2 merged into H3'
 
 H1 RUN-REDUCTION LEMMA (proved): shortcut Z = arc + segment meets C
 in one run; Z odd => single-run fuel; Z even => D delta Z has one
@@ -1399,13 +1399,13 @@ into H3' = GLOBAL SHIFT-RIGIDITY: all shifts everywhere equal one s
 meeting/arc lengths: the seal/comb Diophantine-squeeze species.
 ONE HOLE REMAINS (H3'). T(3) NOT YET PROVED.
 
-## §33 (2026-08-04) — H3' falls: involution kill; bichromatic triangle; one cell left
+## §33 (2026-08-04) H3' falls: involution kill; bichromatic triangle; one cell left
 
-LEVEL 3 DEAD — INVOLUTION KILL: single-run pair (D1,D2,t): E = D1
+LEVEL 3 DEAD (INVOLUTION KILL): single-run pair (D1,D2,t): E = D1
 delta D2 gives legal move E delta D1 = D2 with shift -(|D1|-2t):
 shift-set always contains {sigma, -sigma}, sigma odd => never
 singleton => 2-shift lattice filling reaches 0. LEVEL 2, shifts=4
-DEAD — BICHROMATIC TRIANGLE: E-as-mover shift = |D1|-|D2| => rigid
+DEAD (BICHROMATIC TRIANGLE): E-as-mover shift = |D1|-|D2| => rigid
 => meeting pairs bichromatic (2 vs 6); (D, D', D delta D') is an
 automatic pairwise-single-run triangle => 2-colored triangle:
 contradiction. RESIDUAL CELL: shifts in {0,4}, no 4-valued circuits
@@ -1415,7 +1415,7 @@ census: n + 4 + 4*eps-sum = 2L (mod 8). THE LAMINAR {2,6}-WORLD =
 the last open cell of T(3). Light flags: steering, H6 note.
 T(3) NOT YET PROVED - one cornered cell remains.
 
-## §34 (2026-08-04) — {2,6}-cell dead: cross-ear kill, SP-collapse; H7 named
+## §34 (2026-08-04) {2,6}-cell dead: cross-ear kill, SP-collapse; H7 named
 
 CROSS-EAR KILL (proved): {2,6}-world thetas have all path-values odd;
 ear a->b across P1,P2: theta(a,x) forces alpha1 odd, theta(a,y)
@@ -1431,7 +1431,7 @@ connectivity. NEW HONEST SLICE H7: level-2 shifts in {0,4} WITH
 (4,4,6) pin path classes: thin rigid world, one layer from the SP
 treatment. T(3) NOT YET PROVED - H7 + light flags remain.
 
-## §35 (2026-08-04) — H7 closed; the chain argued-complete; final flag list
+## §35 (2026-08-04) H7 closed; the chain argued-complete; final flag list
 
 H7: crossing-ban holds (2-run shifts = 2 mod 4 illegal everywhere);
 K4-subdivisions contain crossing pairs (the two K4-quads interleave,
@@ -1447,12 +1447,12 @@ V6 exact-4 halving write-up. NO OPEN COMBINATORIAL KERNEL REMAINS.
 STATUS: T(3) = argued-complete chain + verification debts.
 NOT YET A THEOREM. Stated plainly per protocol.
 
-## §36 (2026-08-04) — VERIFICATION PASS: TWO BREAKS FOUND; RETRACTIONS
+## §36 (2026-08-04) VERIFICATION PASS: TWO BREAKS FOUND; RETRACTIONS
 
 BREAK 1 (V4 FAILS): SS9 frozen-nonexistence USED l=1 ("real edges
 are length 1"): does NOT transfer to W-generality. Frozen W-pairs
 exist: theta(2,10,10) branch-pair menu {2,2,2}. COUNTEREXAMPLE TO
-THE ALL-4 LOCK — RING(k): junctions x_i,y_i; doubles x_i-y_i value
+THE ALL-4 LOCK, RING(k): junctions x_i,y_i; doubles x_i-y_i value
 10; ring edges x_i-y_(i+1) value 2: cubic, all circuits = 4 (mod 8),
 actual >= 12: UNBOUNDED all-4 W-family. SS27 degenerate branch
 BROKEN (halving stops: mu-edges 5,1 odd).
@@ -1468,7 +1468,7 @@ collapse (SS9-independent). REPAIRS: all-4 = SP-necklaces
 the ORIGINAL l=1 graph's banked 2-cut laws. T(3) NOT PROVED;
 NOT BOUGHT TONIGHT. The chain has two named open kernels again.
 
-## §37 (2026-08-04) — Repair: All-4 SP Theorem; treewidth endpoint; Davenport engine
+## §37 (2026-08-04) Repair: All-4 SP Theorem; treewidth endpoint; Davenport engine
 
 ALL-4 SP THEOREM (proved): topological K4 in an all-4 W-graph:
 quad = T delta T' over shared path p => p = 2 (mod 4) all paths =>
@@ -1486,7 +1486,7 @@ even) => mod-2 layer needs a parity-frozen-plug ban. B2 (SCP)
 still open on the walk branch. T(3) NOT PROVED; architecture
 repaired, two kernels: SCP + parity-frozen ban.
 
-## §37 addendum — parity-conspiracy funnels to the tube case
+## §37 addendum: parity-conspiracy funnels to the tube case
 
 Conspiracy world (all section-deltas even): Davenport engine kills
 even-threading cycles => all threading cycles odd => hot avoiders
@@ -1500,7 +1500,7 @@ branch; partial structure: One-Cluster, Run-Reduction, involution +
 triangle refutations); (K2) parity-conspiracy tube-endgame finish.
 T(3) NOT PROVED.
 
-## §38 (2026-08-04) — Odd-Octet Lemma; both kernels sharpened
+## §38 (2026-08-04) Odd-Octet Lemma; both kernels sharpened
 
 ODD-OCTET LEMMA (proved): any 8 odd residues mod 8 have subset-sums
 covering Z8. (Any 3 odds contain a {2,6} pair-sum; 3 generating
@@ -1515,7 +1515,7 @@ strict parity-segregation (odd threaders / section-locked evens);
 swap-cycle laws 2m + delta - 2sigma != 0 bind menus to geometry.
 T(3) NOT PROVED - two sharpened kernels.
 
-## §39 (2026-08-04) — Spider Reduction: SCP shrinks to a collusion CSP
+## §39 (2026-08-04) Spider Reduction: SCP shrinks to a collusion CSP
 
 Cubic: pairwise-intersecting arcs share edge-runs; common-core shape
 = SPIDER (core rho*, two binary trees, 8 leaves via depth-3
@@ -1528,7 +1528,7 @@ spider-collusion CSP + classification of non-sunflower intersecting
 arc patterns (the one unbounded residue). K2 unchanged.
 T(3) NOT PROVED.
 
-## §40 (2026-08-04) — Kneser narrowing: spiders die except total uniformity
+## §40 (2026-08-04) Kneser narrowing: spiders die except total uniformity
 
 BANNED-SET GROWTH: orbit-closure accumulates banned sums {K, K-d,..}
 with odd shifts => both parities banned => Kneser: nontrivial
@@ -1542,7 +1542,7 @@ be high-treewidth AND uniform. SCP => UNIFORM SPIDER EXISTENCE
 QUESTION (branch signature = 0 mod 8 = frozen-potential
 fingerprint). K2 unchanged. T(3) NOT PROVED.
 
-## §41 (2026-08-04) — Attachment pinning; flowers; THE KERNELS MERGE
+## §41 (2026-08-04) Attachment pinning; flowers; THE KERNELS MERGE
 
 UNIFORM WORLD vs DLS: both Z-arc bridge variants are odd movers;
 uniformity => 2a = |Z| (mod 8) => every attachment pair on every hot
@@ -1557,7 +1557,7 @@ flower-structured, parity-segregated; flower-CSP: single-plug bans
 m != 6 / m != 2 per arc parity, multi-plug sums != 0; bounded,
 half-derived). T(3) NOT PROVED - one merged kernel.
 
-## §42 (2026-08-04) — CONSPIRACY DEATH: the merged kernel falls
+## §42 (2026-08-04) CONSPIRACY DEATH: the merged kernel falls
 
 EDGE-REPLACEMENT vs PARITY-PURITY: minimality blocks side-replacement
 at every nontrivial 2-edge-cut; block-conditions (7 in menu, or
@@ -1573,7 +1573,7 @@ tonight). ONE GAP REMAINS: non-sunflower intersecting-arc families
 unwritten; Kneser/banned-set machinery is the tool. Plus standing
 verification-grade flags. T(3) NOT PROVED - one geometric gap.
 
-## §43 (2026-08-04) — Arc-Union Dichotomy: forest = classed spider; cyclic = rigid web
+## §43 (2026-08-04) Arc-Union Dichotomy: forest = classed spider; cyclic = rigid web
 
 FOREST CASE: Helly for paths in forests => common vertex; cubic
 pigeonhole => >= 3 arcs share a 2-edge run => CLASSED SPIDER: the
@@ -1586,7 +1586,7 @@ its own write-out: THE RIGID PINNED-WEB CSP = the one remaining
 sub-gap. T(3) state: chain closed except this sub-gap + flags.
 T(3) NOT PROVED.
 
-## §44 (2026-08-04) — Piece-pinning; Mass-Balance Identity; treadmill call
+## §44 (2026-08-04) Piece-pinning; Mass-Balance Identity; treadmill call
 
 EVEN INTERNAL CIRCUITS: reroute keeps mover odd; uniformity =>
 gamma = q - 2 piece = 0 (mod 8): pieces pinned mod 4. ODD internal
@@ -1601,7 +1601,7 @@ locally-consistent regress; SCP needs a GLOBAL theory; Mass-Balance
 is the first global fact; next tools: refined weightings (i^v,
 mod-4 mover classes), circuit-sheaf structure. T(3) NOT PROVED.
 
-## §45 (2026-08-04) — Universal Run-Law
+## §45 (2026-08-04) Universal Run-Law
 
 UNCONDITIONAL: odd circuits C, D meeting in a single run:
 t(C,D) != (val C + val D)/2 (mod 4). (Even partners: no constraint,
@@ -1613,7 +1613,7 @@ T(3) NOT PROVED. State: chain closed except the SCP global theory
 verification of SS38-45, then the moment-method on the run-labeled
 cluster.
 
-## §46 (2026-08-04) — Hostile pass verdict; U_min beads are genuine 2-cuts
+## §46 (2026-08-04) Hostile pass verdict; U_min beads are genuine 2-cuts
 
 VERIFIED: Odd-Octet stands (improved: 7 suffice). SS39-40 WEAKENED:
 uniformity only parity-classwise (only odd hybrids are movers) -
@@ -1626,7 +1626,7 @@ BEADS of U_min necklace-chains = GENUINE 2-EDGE-CUTS of G0 => SS42
 laws force ODD values in every bead-menu. Remaining: compose
 odd-bead values with mover-parity bookkeeping. T(3) NOT PROVED.
 
-## §47 (2026-08-04) — Tree-Helly bottoming: cyclic case merges into classed spiders
+## §47 (2026-08-04) Tree-Helly bottoming: cyclic case merges into classed spiders
 
 TREE-HELLY: U_min subcubic => block-tree degree <= 3; 8 arc-paths
 pairwise edge-sharing => at the Helly vertex >= 3 arcs share a
@@ -1639,7 +1639,7 @@ TEMPLATE-CSP. REMAINING T(3) CONTENT: (1) classed-spider bookkeeping
 (only structural gap); (2) bottom template-CSP emptiness (finite);
 (3) V-flags. T(3) NOT PROVED.
 
-## §48 (2026-08-04) — CORRECTION: SS41 scope hole; classed-spider write-out
+## §48 (2026-08-04) CORRECTION: SS41 scope hole; classed-spider write-out
 
 SELF-CAUGHT: SS41's pinning applied spider-uniformity (base C) to
 bridge-shifts at hot cycles Z (different edge); per-Z Kneser needs
@@ -1653,7 +1653,7 @@ classes; Tree-Helly guarantees one at every bottom). LEDGER: H-A
 (structural), H-B (finite template-CSP), bookkeeping + V-flags.
 T(3) NOT PROVED.
 
-## §49 (2026-08-04) — TWO-VALUE WORLD DEAD: the K3,3 residue kill
+## §49 (2026-08-04) TWO-VALUE WORLD DEAD: the K3,3 residue kill
 
 PER-BASE UNIFORMITY => involution alternation + shared-E argument
 => delta constant on cluster, all odd circuits = v*, evens touching
@@ -1669,7 +1669,7 @@ impossible in any SCP-survivor => every survivor has a >= 2-shift
 base => 2-shift lattice active. Remaining: intermediate spectra
 (3 <= |R| <= 7) with shift-variety. T(3) NOT PROVED.
 
-## §50 (2026-08-04) — Path-Triple Patch; self-caught over-claim; state
+## §50 (2026-08-04) Path-Triple Patch; self-caught over-claim; state
 
 PATCH: SS49 tacitly needed pairwise-meeting triples; One-Cluster
 gives only connectedness. Path-triple D1-D2-D3: composite
@@ -1683,7 +1683,7 @@ bug - caught before banking). PROVED: uniform-shift hot cycles die
 uniform side closed; varied side = intermediate spectra. REMAINING:
 3 <= |R| <= 7 with shift-variety; H-B; flags. T(3) NOT PROVED.
 
-## §51 (2026-08-04) — Consolidation: everything funnels to H-B; V/E dynamics
+## §51 (2026-08-04) Consolidation: everything funnels to H-B; V/E dynamics
 
 CONSOLIDATION THM: >= 3 disjoint-run+arc movers => 2^k affine cube
 in a <= 7-value spectrum => collapse; so intermediate spectra are
@@ -1698,12 +1698,12 @@ Diophantine system. SELF-CAUGHT IN-TURN: attempted 3v-2e kill wrong
 (v,e,tau,bead system + non-singleton V) + bookkeeping + V-flags.
 T(3) NOT PROVED.
 
-## §52 (2026-08-04) — RETRACTION (SS46 bead-cuts); Cluster-Confinement Theorem
+## §52 (2026-08-04) RETRACTION (SS46 bead-cuts); Cluster-Confinement Theorem
 
 RETRACTED: SS46's "middle beads = genuine 2-cuts": chain-internal
 vertices' third edges leave U_min and cross the claimed cuts; beads
 hang by 2 + many edges. SS47 bead-arithmetic conditional; tonight's
-bead-annihilation withdrawn. SURVIVES + NEW — CLUSTER-CONFINEMENT
+bead-annihilation withdrawn. SURVIVES + NEW: CLUSTER-CONFINEMENT
 THM (V-singleton): cluster circuit crossing a 4-pair menu has
 companion v +- 4, odd, meets cluster => = v: 4 = 0 impossible =>
 cluster crosses only 4-pair-free menus => with Menu-Fatness, cluster
@@ -1713,7 +1713,7 @@ node, >= 8 odd circuits, V-singleton pinnings (E-pair, 2-classed
 runs, +-(v-e) shifts), chain/triple identities, common chains with
 forced third edges into the node. T(3) NOT PROVED.
 
-## §53 (2026-08-04) — V-SINGLETON DEAD: the third-edge lens Diophantine
+## §53 (2026-08-04) V-SINGLETON DEAD: the third-edge lens Diophantine
 
 KILL CHAIN: (1) circuits through cluster edges pinned to {v} u E;
 supplies touching cluster => E in {4, 2v-4}. (2) cubic => every
@@ -1728,7 +1728,7 @@ disjointness; F-ii supplies-avoid-cluster sub-case; F-iii
 3-connectivity usage. REMAINING: non-singleton V (same lens
 machinery), the three flags, older bookkeeping. T(3) NOT PROVED.
 
-## §54 (2026-08-04) — Non-singleton skeleton; definitive bookkeeping list
+## §54 (2026-08-04) Non-singleton skeleton; definitive bookkeeping list
 
 NON-SINGLETON V: doubly-pinned vertices (meeting pair v != v': four
 R-translates cut the menus); chain-closure turns V = {v,v'} into
@@ -1742,7 +1742,7 @@ no open combinatorics. STATE: T(3) = non-singleton-V campaign +
 bookkeeping, atop the verified chain and today's kills (two-value,
 V-singleton, conspiracy, Escher, sunflower). T(3) NOT PROVED.
 
-## §55 (2026-08-04) — RETRACTION: SS53 Steps 3-4 (internal/external scope error)
+## §55 (2026-08-04) RETRACTION: SS53 Steps 3-4 (internal/external scope error)
 
 SELF-CAUGHT while reusing the lens for non-singleton V: the double-
 pinned menu (R-a) n (R-(v-a)) requires paths disjoint from BOTH
@@ -1757,7 +1757,7 @@ affine-R bound |R| <= 4 [flag: formalize via cube-collapse]; (3)
 external-path existence = connectivity of G0 minus E(D) [flag].
 BOTTOM RE-OPENED (singleton and non-singleton). T(3) NOT PROVED.
 
-## §56 (2026-08-04) — External-Lens first laws; session close
+## §56 (2026-08-04) External-Lens first laws; session close
 
 DIFFERENCE LAW: external path at (x,y) closes with both arcs =>
 R n (R + 2a - v) nonempty => (affine R) 2a in {v+-sigma, v+-sigma'}:
@@ -1775,7 +1775,7 @@ SESSION AGENDA: (1) formalize affine-R via cube-collapse; (2) run
 the external lens through the triple-sum gate; (3) hostile pass
 over SS49-56. T(3) NOT PROVED. EG NOT PROVED.
 
-## §57 (2026-08-04) — Six-Pack Bound; affine-R retracted; SS51 corrected
+## §57 (2026-08-04) Six-Pack Bound; affine-R retracted; SS51 corrected
 
 SIX-PACK BOUND (proved): disjoint movers compose => v + subset-sums
 in R => (Odd-Septet) at most 6 pairwise-disjoint single-run movers
@@ -1789,7 +1789,7 @@ family classification (shift-relations; Kneser/uniformity
 territory, SS40/49/50 machinery). ROAD: classify collision patterns
 => R-size control => External Lens. T(3) NOT PROVED.
 
-## §58 (2026-08-04) — R-smallness dead; MOVABLE BOUNDARY; tau-linear plan
+## §58 (2026-08-04) R-smallness dead; MOVABLE BOUNDARY; tau-linear plan
 
 NEGATIVE (honest): k=6 monochromatic collision family (shifts = 1,
 v = 1) is residue-alive with R = {1..7}: large spectra consistent;
@@ -1803,7 +1803,7 @@ rungs; SS15 hatch-pigeonhole (verified) kills corridors at ~40 =>
 chain-traffic bounded => saturation-vs-capacity counting war
 (SS20 precedent). T(3) NOT PROVED.
 
-## §58 addendum — scope-note: bundles are not ladders
+## §58 addendum. Scope note: bundles are not ladders
 
 SS15's hatch-pigeonhole runs on LADDERS (two boundaries + rungs +
 4-rung webs); common-chain traffic is a BUNDLE (overlap on one
@@ -1816,7 +1816,7 @@ entire remaining SCP content, attackable by bundle-tables or
 packing; plus bookkeeping B1-B7 and the SS49-56 hostile-pass
 items already logged. T(3) NOT PROVED. EG NOT PROVED.
 
-## §59 (2026-08-04) — Bundle table opened: Anti-Correlation Theorem
+## §59 (2026-08-04) Bundle table opened: Anti-Correlation Theorem
 
 TRIPLE-IDENTITY vs RUN-LAW: tree-fact (pairwise min occurs twice)
 gives v = tau + D_L + D_R (mod 4) with D's = deepest meet-depths;
@@ -1830,7 +1830,7 @@ tunable mod 4 => pair+triple laws do NOT bound width. NEXT LAYER:
 quadruple identities (4-fold sym-diffs avoid rho: even-circuit
 conditions, new geometry) or the nu-packing arm. T(3) NOT PROVED.
 
-## §60 (2026-08-04) — Quadruple Law: the bundle table's second layer
+## §60 (2026-08-04) Quadruple Law: the bundle table's second layer
 
 QUADRUPLE LAW (proved): val(S) = Sum v - 2W for 4-fold sym-diffs,
 W = 2 tau + sum over tree-edges of value * floor(q/2); S avoids rho,
@@ -1842,7 +1842,7 @@ survivor is now constrained. At width w: C(w,4) conditions vs
 linear collusion-space: width-bounding armed. [Case-column: S in
 two components => paired conditions.] T(3) NOT PROVED.
 
-## §61 (2026-08-04) — DIAGONAL PINNING: caterpillar bundles have width <= 6
+## §61 (2026-08-04) DIAGONAL PINNING: caterpillar bundles have width <= 6
 
 The triple-law is an EQUATION: D_L + D_R = c (mod 4) per triple.
 Caterpillars: diagonal pinned (p_j + q_j = c for middle j); with
@@ -1856,7 +1856,7 @@ NEXT: capacity war - Omega(n) arcs / width <= ~6 => Omega(n)
 distinct chains => block-tree proliferation vs subcubic limits.
 T(3) NOT PROVED.
 
-## §62 (2026-08-04) — CAPACITY CASCADE: mu <= 6, |R| <= 6, linear packing
+## §62 (2026-08-04) CAPACITY CASCADE: mu <= 6, |R| <= 6, linear packing
 
 CASCADE (proved, general-tree table flagged): (1) circuits through
 an edge = a bundle => Diagonal-Pinning => mu(e) <= ~6; (2) R(e) =
@@ -1869,7 +1869,7 @@ disjoint short odds (6 disjoint movers => Five-Pack violation =>
 dead). The 7-linkage wall in final form - linear supply vs linkage:
 averaging regime. T(3) NOT PROVED - one lemma + flagged tables.
 
-## §63 (2026-08-04) — Blocking-shape dead; final dichotomy; one flag
+## §63 (2026-08-04) Blocking-shape dead; final dichotomy; one flag
 
 BLOCKING-SHAPE DEATH: side-branch chains would hide the disjoint
 odds, but One-Cluster forces threading bridges through Omega(n)
@@ -1884,7 +1884,7 @@ cancellation-control in composites]. T(3) REMAINING: cancellation-
 control; general-tree bundle table; bookkeeping B1-B7 + logged
 flags. T(3) NOT PROVED.
 
-## §64 (2026-08-04) — Mandatory audit of SS57-63: downgrade + repairs
+## §64 (2026-08-04) Mandatory audit of SS57-63: downgrade + repairs
 
 SOUND: Six-Pack composability; SUBSET-SUM GROWTH LEMMA proved
 properly (odd s: S+s=S => S=Z8, else growth: |S_k| >= min(8,k+1)):
@@ -1899,7 +1899,7 @@ steering). Completing T(3) = Trace Lemma + general-tree table +
 bookkeeping. T(3) NOT PROVED - stated plainly against the goal's
 demand; honesty protocol governs.
 
-## §65 (2026-08-04) — TRACE-DICHOTOMY; RETRACTION OF SS59-63; the LP front
+## §65 (2026-08-04) TRACE-DICHOTOMY; RETRACTION OF SS59-63; the LP front
 
 TRACE-DICHOTOMY THM (proved by explicit trace): bundle-triple
 composites: different split-pairs => ONE circuit; same split-pairs
@@ -1916,7 +1916,7 @@ length distribution - a global extremal question. STANDING: verified
 core through SS58 + Trace-Dichotomy. T(3) NOT PROVED - the demanded
 completion is refused on grounds of truth.
 
-## §66 (2026-08-04) — IMPORTS: the Mader Program
+## §66 (2026-08-04) IMPORTS: the Mader Program
 
 REJECTED (checked): Dirac (cubic caps at 3-connectivity); Thomassen/
 Liu-Ma (need min degree >= k+1; silent at degree 3 mod 8); Reed
@@ -1934,7 +1934,7 @@ min-max: failure needs small A-separators, fought by connectivity
 + density) + boundary flags (exactly-7 spectra; pentagon-cap
 formalization). T(3) NOT PROVED.
 
-## §67 (2026-08-04) — Scattering Bound; the hub-scattered knot
+## §67 (2026-08-04) Scattering Bound; the hub-scattered knot
 
 SCATTERING BOUND (proved): nu < m/2 => Mader-scattering set X,
 |X| <= 2nu < m; 3-connectivity: >= 3 X-attachments per private
@@ -1949,7 +1949,7 @@ Erdos-Gallai (wired, awaiting density), Jackson circumference
 (wired), Dirac/Thomassen/Liu-Ma (rejected with reasons), Jaeger
 8-flow (reserve). T(3) NOT PROVED.
 
-## §68 (2026-08-04) — THE TREEWIDTH ARCHITECTURE (grid-minor import)
+## §68 (2026-08-04) THE TREEWIDTH ARCHITECTURE (grid-minor import)
 
 IMPORT: Robertson-Seymour grid-minor duality (Chekuri-Chuzhoy
 bounds). DICHOTOMY on ALL of G0, D-structure irrelevant:
@@ -1968,7 +1968,7 @@ All templated on verified f=2 theorems. Secondary imports parked:
 snark/Petersen dichotomy (RST), V4-flow color-sum homomorphism.
 T(3) NOT PROVED - three templated lemmas + audit.
 
-## §69 (2026-08-04) — Executing L1-L3: layers, inheritance, Tutte-Berge
+## §69 (2026-08-04) Executing L1-L3: layers, inheritance, Tutte-Berge
 
 L1 CORRECTION + EXECUTION: plain walls inherit only the {0}-ban
 (hot hatches legal). Rebuilt: t=1: odd-D rare (<= 1 per {1,5});
@@ -1983,7 +1983,7 @@ SS42's parity localizes; case-work unfinished. ARCHITECTURE STATE:
 Arm 1 = L1 (3/4); Arm 2 = L2 (inherited) + L3 (open) + engine
 (verified). T(3) NOT PROVED - L1 layer 4, L3 case-work, audits.
 
-## §70 (2026-08-04) — L1 CLOSED (Arm 1 done); L3 mechanism; self-catch
+## §70 (2026-08-04) L1 CLOSED (Arm 1 done); L3 mechanism; self-catch
 
 L1 WALL-LADDER DEATH (proved, t = 1,2,3,4): odd-D's rare (t=1) and
 isolated (t=2); coset-switches <= 2 (t=2); isolated {3,7}s <= 2
@@ -1998,7 +1998,7 @@ section-run): blockers force odd middle-U-turns; parity recurses
 inward to single-section odd U-turns vs conspiracy-pinned throughs.
 Case-work templated on SS42, unfinished. T(3) NOT PROVED.
 
-## §71 (2026-08-04) — L3 core: r-parity; 6-saturation; the final CSP
+## §71 (2026-08-04) L3 core: r-parity; 6-saturation; the final CSP
 
 R-PARITY: bad cycles use r pairing-edges, Sum m = -r (mod 8);
 r=1 blockers are ODD (7): conspiracy-fatal; r=2 blockers
@@ -2012,7 +2012,7 @@ coset-stable U-menus + 6-saturated cross-matrices + even-pure
 throughs + odd Gamma, on <= 3W0 stubs. Bounded, named, final for
 Arm 2. T(3) NOT PROVED - this CSP + L2 re-read + audits.
 
-## §72 (2026-08-04) — RETRACTION of SS71 framing; the Odd-Threader World
+## §72 (2026-08-04) RETRACTION of SS71 framing; the Odd-Threader World
 
 RETRACTED: SS71's r-parity leverage. At f=2 the side pair-menu IS
 the through-menu (SS42 worked); at f >= 3 surgery-blockers land in
@@ -2027,7 +2027,7 @@ the odd-dense knot at bounded treewidth, now facing 2^sections
 odd threaders in One-Cluster with tw as a new weapon.
 T(3) NOT PROVED - Odd-Threader World + L2 re-read + audits.
 
-## §73 (2026-08-04) — ODD-THREADER COLLAPSE: Arm 2 closes modulo flags
+## §73 (2026-08-04) ODD-THREADER COLLAPSE: Arm 2 closes modulo flags
 
 CHAIN: (1) odd locals meeting threaders die (swap preserves span,
 flips parity: even threader = engine-dead); (2) One-Cluster => all
@@ -2044,7 +2044,7 @@ FULL ARCHITECTURE: Arm 1 closed (SS70); Arm 2 closed-modulo-flags
 this session's record: fresh chains break ~half the time. The audit
 is the next mandatory act.
 
-## §74 (2026-08-04) — AUDIT: SS70 RETRACTED; Gallai-Grid Wall Death (repair)
+## §74 (2026-08-04) AUDIT: SS70 RETRACTED; Gallai-Grid Wall Death (repair)
 
 AUDIT HIT: SS70's hatch 8-cycles DO NOT EXIST in planar wall-rows
 (SS15's hatches lived on crossing matching-chords). Interval-quads
@@ -2058,7 +2058,7 @@ WALLS ~10^5 DIE. Import-free; one bookkeeping flag (corner-term
 formula). ARM 1 RE-CLOSED, stronger. AUDIT QUEUE: SS73 chain
 (alpha-delta), SS68 engine wiring. T(3) NOT PROVED.
 
-## §75 (2026-08-04) — AUDIT COMPLETE: L2-inheritance broken; hairy towers
+## §75 (2026-08-04) AUDIT COMPLETE: L2-inheritance broken; hairy towers
 
 AUDIT HIT 2: SS9/SS10 proofs are SPQR-structural (2-edge-cut
 recursion), NOT pair-local; SS69's inheritance to multi-boundary
@@ -2074,7 +2074,7 @@ Arm 2 = section-spread vs hairy towers. T(3) NOT PROVED - the
 audit did its work; the truth is smaller and harder than SS73
 hoped, and exactly known.
 
-## §76 (2026-08-04) — M*-BOUNDEDNESS (Section-Spread proved): engine refueled
+## §76 (2026-08-04) M*-BOUNDEDNESS (Section-Spread proved): engine refueled
 
 Maximal mod-4-frozen sub-network M*: (1) hair absorbs (maximality)
 or exits (<= 6W0+2): interior hair-free, internally cubic; (2) clean
@@ -2092,7 +2092,7 @@ PROVED [flags: poisoned-core bookkeeping; corner-term formula
 bookkeeping-grade flags remain, each named, none combinatorially
 open.
 
-## §77 (2026-08-04) — Flags 1, gamma discharged; the level-2 kernel exposed
+## §77 (2026-08-04) Flags 1, gamma discharged; the level-2 kernel exposed
 
 FLAG 1 DONE: rectangle-value = alpha(x2) - beta(x1) (prefix-sum
 derivation); two-stage pigeonhole (column V-collisions => zero-g
@@ -2109,7 +2109,7 @@ descent (SS36 crisis redux; hairy lifts block the G0-route).
 REMAINING KERNEL OF T(3): the level-2 descent. Plus: poisoned-core
 page (SS76). T(3) NOT PROVED.
 
-## §78 (2026-08-04) — Structured hair: recursion unnecessary; the Final World
+## §78 (2026-08-04) Structured hair: recursion unnecessary; the Final World
 
 STRUCTURED HAIR: the odd-transversal = periodic-separator edges;
 deleting them cuts G0 into BOUNDED chunks (30 W0^2): no level-2
@@ -2123,7 +2123,7 @@ Edmonds-Johnson T-joins; 2-factor component theory; the local
 even-space dimension ledger. STANDING FLAGS: poisoned-core page
 (SS76) only. T(3) NOT PROVED - one world, one property, one flag.
 
-## §79 (2026-08-04) — Chromatic split of the Final World
+## §79 (2026-08-04) Chromatic split of the Final World
 
 CASE A (3-edge-colorable): (1) bicolored cycles even => LOCAL in
 the Final World: three 2-factors tile the chain in bounded windows;
@@ -2136,7 +2136,7 @@ pre-use); bounded-tw snarks exist (flower chains): open ground,
 flow-theory toolkit. T(3) NOT PROVED - Final World = Case A
 (strong position) + Case B (open) + poisoned-core page.
 
-## §80 (2026-08-04) — Quotient Descent: min-degree-6 with linear omega
+## §80 (2026-08-04) Quotient Descent: min-degree-6 with linear omega
 
 Contract local F12-cycles: Q = G0/F12: every alpha-beta-cycle stub
 is gamma => min-degree >= 6. Lift-parity linearized via per-cycle
@@ -2148,7 +2148,7 @@ resource (Mader, Liu-Ma-adjacent tools rich at degree 6, silent at
 STATE: T(3) = Case-A quotient world (min-deg-6, omega-weighted) +
 Case B (snark/Petersen) + poisoned-core page. T(3) NOT PROVED.
 
-## §81 (2026-08-04) — SPLICE-DESCENT: T(3) is finitely checkable
+## §81 (2026-08-04) SPLICE-DESCENT: T(3) is finitely checkable
 
 TRANSFER-STATE: bounded section-runs carry full menu-profiles mod 8
 (bounded alphabet); Theta(n) positions => state repetition; the run
@@ -2163,7 +2163,7 @@ vs census 20; the finite gap is now proven to exist rather than
 conjectured. Routes forward: collapse N* (sharper states) or kill
 bounded survivors structurally. T(3) NOT PROVED.
 
-## §82 (2026-08-04) — Precision-fix to SS81; terminal statement
+## §82 (2026-08-04) Precision-fix to SS81; terminal statement
 
 FIX: the splice-invariant is the CUMULATIVE prefix-profile
 (pairings -> value-sets + girth data); cumulative-state repetition
@@ -2176,7 +2176,7 @@ pass). The gap (20, N*] is not crossable by any argument in this
 session. T(3) NOT PROVED. This sentence is the program's honest
 terminus for today; it changes only when new mathematics does.
 
-## §83 (2026-08-04) — Flags discharged: the Reduction Theorem is complete
+## §83 (2026-08-04) Flags discharged: the Reduction Theorem is complete
 
 FLAG A: C3 inherits tw <= W0; exits localize to bounded bags; large
 untouched intervals are 2-connected chunks running the SS34/SS37
@@ -2189,7 +2189,7 @@ counterexample with n <= N* (absolute). The three worlds of
 construct - no lead succeeds; (iii) the reduction: DONE, flag-free.
 T(3) ITSELF REMAINS OPEN.
 
-## §84 (2026-08-04) — AUTOMATON REFORMULATION: the gap dissolved, not crossed
+## §84 (2026-08-04) AUTOMATON REFORMULATION: the gap dissolved, not crossed
 
 IMPORT: Courcelle-Seese. The counterexample class is CMSO-definable
 at bounded treewidth (Arm 1, flag-free) => recognizable by a tree
@@ -2207,7 +2207,7 @@ constants); the invariant route is the ONLY gap-free path and is a
 well-posed finite algebra problem. T(3) NOT PROVED - the remaining
 task is the invariant's construction.
 
-## §85 (2026-08-04) — The invariant's shape: the SCP in its true home
+## §85 (2026-08-04) The invariant's shape: the SCP in its true home
 
 CAPPING: caps choose pairing-schemes; uncappable <=> every perfect
 pairing contains a blocked slot. Phi must be GRADED: bounded type-
@@ -2220,7 +2220,7 @@ HAND-STARTABLE: the f = 3 invariant (three stubs, few pairings,
 law-pruned states): first rung and template. T(3) NOT PROVED;
 the gap is dissolved into the invariant question; EG stands beyond.
 
-## §86 (2026-08-04) — The f = 3 rung: symmetric form; 4-Pair Lemma; anchor gap
+## §86 (2026-08-04) The f = 3 rung: symmetric form; 4-Pair Lemma; anchor gap
 
 SYMMETRIC FORM (proved): 3-cut profiles = menu-triples (circuits
 cross exactly twice); caps = reversed prefixes; cappability <=>
@@ -2234,7 +2234,7 @@ LEMMA - pin 4-pair bases coherently (pi-potential on stub parities
 completes the rung; the rung templates the invariant; the
 invariant is T(3). T(3) NOT PROVED.
 
-## §87 (2026-08-04) — CORRECTION: SS86's 4-Pair Lemma withdrawn
+## §87 (2026-08-04) CORRECTION: SS86's 4-Pair Lemma withdrawn
 
 The companion-swap across hot arcs gives difference 4 - 2a, a
 4-pair only when a = 0 (mod 4) (not automatic; SS17's 4-pairs came
@@ -2246,7 +2246,7 @@ formula. T(3) NOT PROVED. The invariant program (SS84-86) remains
 the correct gap-free formulation; its first rung awaits these two
 lemmas.
 
-## §88 (2026-08-04) — FRESH MATHEMATICS: Gauss-Brown framework for Phi
+## §88 (2026-08-04) FRESH MATHEMATICS: Gauss-Brown framework for Phi
 
 (1) CANONICAL DECOMPOSITION: cubic => cycle-space elements are
 unique vertex-disjoint circuit families; Gamma(G) = sum of
@@ -2266,7 +2266,7 @@ algebraic content of the anchoring gap. T(3) NOT PROVED - the
 classification + dynamics-closure are the remaining constructive
 steps of Phi.
 
-## §89 (2026-08-04) — Classification dichotomy; bootstrap; spectral engine
+## §89 (2026-08-04) Classification dichotomy; bootstrap; spectral engine
 
 (4) CLASSIFICATION (proved): singleton-anchored maximal 0-sum-
 intersecting families exist only at reflection-fixed points (F_0,
@@ -2284,7 +2284,7 @@ subdominant to untwisted; conspiratorial sections = eigenvalue
 degeneracies of explicit small matrices. T(3) NOT PROVED - Phi's
 completion = the spectral-gap analysis + graded entry bookkeeping.
 
-## §90 (2026-08-04) — THE MENU COMPLEMENTARITY BUDGET: Phi constructed
+## §90 (2026-08-04) THE MENU COMPLEMENTARITY BUDGET: Phi constructed
 
 MENU COMPLEMENTARITY BOUND (proved, 3 lines): edge-cut sides A, B;
 for each cut-edge pair p, A-paths and B-paths are internally
@@ -2304,10 +2304,10 @@ FLAGS: (1) parity-mismatch/bipartite case halves to level 2
 explicit - that IS the gap-crossing work; (3) detour attachment.
 T(3) NOT PROVED.
 
-## §91 (2026-08-04) — FULLNESS => T(3); bipartite case closed
+## §91 (2026-08-04) FULLNESS => T(3); bipartite case closed
 
 SELF-CORRECTION: parity-fullness is NOT enough (even-full A +
-odd-full B = 4+4 = 8: budget met, not breached). CORRECT TARGET —
+odd-full B = 4+4 = 8: budget met, not breached). CORRECT TARGET is
 FULLNESS: M^A_p = Z8 => every B-value q gives v = -2-q in M^A_p =>
 circuit = 0 => B has NO path between those terminals: absurd.
 FULLNESS => T(3) (proved). Fullness needs ~4 disjoint detours whose
@@ -2326,7 +2326,7 @@ REMAINING CONTENT OF T(3): THE FULLNESS LEMMA (large pieces have a
 full menu on some cut-pair) - detour supply + disjointness +
 attachment to a common terminal-path. T(3) NOT PROVED.
 
-## §92 (2026-08-04) — Detour Shift Formula; the anti-fullness enemy named
+## §92 (2026-08-04) Detour Shift Formula; the anti-fullness enemy named
 
 DETOUR SHIFT FORMULA (proved): circuit Z meeting terminal path P in
 a single run of length t shifts the path value by d = |Z| - 2t;
@@ -2344,7 +2344,7 @@ forces the terminal path to traverse those sections rather than
 hide behind a smaller cut. T(3) NOT PROVED - the Fullness Lemma's
 composition + traversal steps remain.
 
-## §93 (2026-08-04) — Bead-Chain Composition; one step left: traversal
+## §93 (2026-08-04) Bead-Chain Composition; one step left: traversal
 
 Cubic 2-connected => 2-edge-connected => parts attach by >= 2 edges;
 2-attaching parts = BEADS in series on the terminal path; any path
@@ -2359,7 +2359,7 @@ terminal path passes through >= 4 nontrivial beads (not hiding
 behind a smaller cut). Everything else in the endgame is proved.
 T(3) NOT PROVED.
 
-## §94 (2026-08-04) — UNIFORM-CLASS THEOREM (Dirac + 3 lines); conspiracy dead
+## §94 (2026-08-04) UNIFORM-CLASS THEOREM (Dirac + 3 lines); conspiracy dead
 
 THEOREM (proved): no graph with min degree 3 has all circuits
 congruent mod 4. Proof: Dirac 1960 => K4-subdivision with branch
@@ -2376,7 +2376,7 @@ detours on ONE terminal path (regional K4-subdivisions give
 regional detours; the routing that makes them simultaneously
 usable on a single a_i-a_j path is unproved). T(3) NOT PROVED.
 
-## §95 (2026-08-04) — Single-K4 insufficiency; the localization gap stands
+## §95 (2026-08-04) Single-K4 insufficiency; the localization gap stands
 
 PROBE (honest negative): a K4-subdivision gives five routes between
 two branch vertices, but they can ALL COINCIDE: p13=p14=p23=p24=1,
@@ -2391,7 +2391,7 @@ SS34/SS37), conspiracy-impossibility, bipartite/level-2 descent
 disjoint good detours on one terminal path). T(3) NOT PROVED;
 EG NOT PROVED.
 
-## §96 (2026-08-04) — Localization proved for non-bipartite regions
+## §96 (2026-08-04) Localization proved for non-bipartite regions
 
 SHORTCUT LEMMA (proved): first/last contact x,y of a u-w path S
 with a circuit Z; replacing S[x,y] by a Z-arc gives a path meeting
@@ -2411,7 +2411,7 @@ bipartition classes of entry/exit; Menger gives 3 approaches; the
 obstruction is only all-approaches-in-one-class. THE LAST QUESTION.
 T(3) NOT PROVED.
 
-## §97 (2026-08-04) — RETRACTION of SS91 halving; bipartite budget 4 repair
+## §97 (2026-08-04) RETRACTION of SS91 halving; bipartite budget 4 repair
 
 RETRACTED (10th): SS91's halving. Unsigned length is NOT linear on
 the cycle space: l(C1 x C2) = l(C1)+l(C2)-2 l(C1 n C2). K3,3
@@ -2430,7 +2430,7 @@ class; Uniform-Class guarantees both types exist in every
 min-degree-3 region. RESIDUAL: the 2-linkage routing to chosen
 contacts. T(3) NOT PROVED.
 
-## §98 (2026-08-04) — GOOD-DETOUR THEOREM: linkage discharged
+## §98 (2026-08-04) GOOD-DETOUR THEOREM: linkage discharged
 
 THEOREM (proved): R 2-connected with terminals u,w; if all u-w
 paths have the same length mod 4 then R is BIPARTITE. Proof: every
@@ -2447,7 +2447,7 @@ bridge-arithmetic, further constrained by Uniform-Class (both
 mod-4 circuit classes must coexist inside it). THE LAST UNCLOSED
 CELL OF T(3). T(3) NOT PROVED.
 
-## §99 (2026-08-04) — Disjointness unnecessary; the last cell isolated
+## §99 (2026-08-04) Disjointness unnecessary; the last cell isolated
 
 SIMPLIFICATION (proved): breaching the bipartite budget needs only
 |M^A| >= 3 and |M^B| >= 2 (sum 5 > 4); three values need TWO
@@ -2463,7 +2463,7 @@ in ODD runs; that forbids exiting a circuit one vertex later =>
 NO BRIDGE ATTACHES AT TWO ADJACENT VERTICES of any circuit.
 Rigid and checkable: the next attack surface. T(3) NOT PROVED.
 
-## §100 (2026-08-04) — CHORD-MATCHING THEOREM: the main branch of the last cell dies
+## §100 (2026-08-04) CHORD-MATCHING THEOREM: the main branch of the last cell dies
 
 Setting: A mod-4-frozen, circuit Z with all bridges = single chords
 (A = Z + perfect matching = the SS11 chord-diagram structure).
@@ -2482,7 +2482,7 @@ REMAINING SUB-CASE: bridges with >= 3 attachments (frozenness makes
 them internally mod-4-frozen, hence bipartite by the Good-Detour
 Theorem: recursion one level down). T(3) NOT PROVED.
 
-## §101 (2026-08-04) — 3-Attachment Forcing; the last condition isolated
+## §101 (2026-08-04) 3-Attachment Forcing; the last condition isolated
 
 3-ATTACHMENT FORCING (proved): bridge B with attachments z1,z2,z3,
 arcs alpha+beta+gamma = |Z|; frozenness gives b_ij = traversed arc
@@ -2495,7 +2495,7 @@ include one with a NON-TRAVERSABLE ARC. THE LAST UNCLOSED
 CONDITION: non-traversable arcs (a connectivity restriction on
 which terminal paths run where). T(3) NOT PROVED.
 
-## §102 (2026-08-04) — Fan Reduction: the final enemy is class-segregation
+## §102 (2026-08-04) Fan Reduction: the final enemy is class-segregation
 
 FAN REDUCTION (proved): fan lemma gives an a-b path entering circuit
 C at u, traversing an arc, leaving at v; the complementary arc gives
@@ -2510,7 +2510,7 @@ non-adjacent - independently matching SS99's derivation.
 FINAL ENEMY (one sentence): a bipartite cubic graph whose every
 circuit has class-segregated bridges. T(3) NOT PROVED.
 
-## §103 (2026-08-04) — The class-segregated enemy is self-contradictory
+## §103 (2026-08-04) The class-segregated enemy is self-contradictory
 
 (1) In a bipartite graph every chord joins the two classes; a chord
 is a 2-attachment bridge => CLASS-HOMOGENEITY FORCES CHORDLESS
@@ -2529,7 +2529,7 @@ routable along both arcs of the relevant circuits), the hypothesis
 that generated class-homogeneity. THAT SINGLE CONDITION IS THE
 WHOLE REMAINING DISTANCE. T(3) NOT PROVED.
 
-## §104 (2026-08-04) — Traversability REPLACED by bridge-internal rerouting
+## §104 (2026-08-04) Traversability REPLACED by bridge-internal rerouting
 
 KEY FACT: a terminal path meeting circuit Z in a single run [x,y]
 has its entire pre-x portion inside ONE bridge B (bridges are the
@@ -2548,7 +2548,7 @@ counterexample dies. REMAINING: the sub-case a_i, a_j in the SAME
 bridge of Z (disjointness of the two rerouted portions), plus the
 framework's standing flags. T(3) NOT PROVED.
 
-## §105 (2026-08-04) — CORRECTION to SS104; the Tutte Reduction
+## §105 (2026-08-04) CORRECTION to SS104; the Tutte Reduction
 
 CORRECTION (11th): SS104's "every bridge is class-homogeneous" is
 FALSE as proved - the rerouting needs the path's pre-contact
@@ -2567,7 +2567,7 @@ at x and leaving at y, can the entry be rerouted to another
 attachment x' keeping the two portions vertex-disjoint inside the
 single bridge? T(3) NOT PROVED.
 
-## §106 (2026-08-04) — ARC-PARITY KILL: frozenness dies (one existence condition)
+## §106 (2026-08-04) ARC-PARITY KILL: frozenness dies (one existence condition)
 
 Let Z be a non-separating induced cycle THROUGH a_i with a_j not on
 Z (Tutte 1963 gives non-separating induced cycles through any edge).
@@ -2587,7 +2587,7 @@ directly and comes out CONSISTENT (no contradiction), so this is
 load-bearing, not cosmetic. Fallback: other terminal pairs (f >= 3).
 T(3) NOT PROVED.
 
-## §107 (2026-08-04) — FINAL STATEMENT: T(3) reduces to No-Frozen-Pairs
+## §107 (2026-08-04) FINAL STATEMENT: T(3) reduces to No-Frozen-Pairs
 
 NO-FROZEN-PAIRS CONJECTURE: in a 3-connected cubic graph, no pair
 u,v has all u-v paths congruent mod 4.
@@ -2605,7 +2605,7 @@ SESSION CLOSE: T(3) NOT PROVED; EG NOT PROVED. ~40 theorems,
 11 self-caught retractions, all statuses attached. The program is
 one graph-structure lemma from the first tower level.
 
-## §108 (2026-08-04) — CROSS-CHORD CONTRADICTION; the gap localized
+## §108 (2026-08-04) CROSS-CHORD CONTRADICTION; the gap localized
 
 CROSS-CHORD KILL (proved): Menger theta P1,P2,P3 (cubic: uses all
 edges at u,v). A chord x in P1 (dist alpha) to z in P2 (dist gamma)
@@ -2622,7 +2622,7 @@ distance-parities; 3-connectivity gives >= 3 attachments but the
 frozen structure keeps forcing one parity class).
 T(3) NOT PROVED. EG NOT PROVED.
 
-## §109 (2026-08-04) — TUTTE'S PERIPHERAL-CYCLE FACT CLOSES FROZENNESS
+## §109 (2026-08-04) TUTTE'S PERIPHERAL-CYCLE FACT CLOSES FROZENNESS
 
 THE SIMPLE FACT (classical, Tutte 1963): in a 3-connected graph,
 for any edge e and vertex v not on e there is a PERIPHERAL cycle
@@ -2644,7 +2644,7 @@ route = sumset relation M_13 contains M_12 + M_23 on a 3-cut
 (Cauchy-Davenport pushes a menu to >= 5 per side, breaching 8).
 T(3) NOT PROVED - one branch closed, one open.
 
-## §110 (2026-08-04) — Scope refinement of SS109 (honest)
+## §110 (2026-08-04) Scope refinement of SS109 (honest)
 
 The capping A' = A + a1a2 is cubic only for 2-EDGE cuts. For 3-cuts,
 capping by a vertex z (joined to a1,a2,a3) restores cubicity but
@@ -2660,7 +2660,7 @@ constraint. Kneser route via M_13 contains M_12 + M_23 gives >= 5
 only for trivial stabilizer; the even-subgroup case stalls at 4.
 T(3) NOT PROVED.
 
-## §111 (2026-08-04) — CONTRACTION TRICK: the capping obstruction closes
+## §111 (2026-08-04) CONTRACTION TRICK: the capping obstruction closes
 
 Contract B to a vertex z: A* = G0/B is 3-CONNECTED (contracting a
 connected subgraph preserves 3-connectivity) though not cubic -
@@ -2681,7 +2681,7 @@ components of A - V(Z) each contain a terminal, so there are <= 3:
 a small concrete gap. Plus the non-bipartite budget tightness.
 T(3) NOT PROVED.
 
-## §112 (2026-08-04) — SUMSET PROPAGATION + SATURATION + PARITY MATCHING
+## §112 (2026-08-04) SUMSET PROPAGATION + SATURATION + PARITY MATCHING
 
 (1) PROPAGATION: M_ik contains M_ij + M_jk (concatenate internally
 disjoint paths); |M_jk| >= 1 always => a translate gives
@@ -2704,7 +2704,7 @@ achieving the required lengths choosable internally disjoint.
 Everything else in the chain is proved. T(3) NOT PROVED (pending
 that lemma).
 
-## §113 (2026-08-04) — Parity linearity; the last configuration isolated
+## §113 (2026-08-04) Parity linearity; the last configuration isolated
 
 PARITY LINEARITY (proved): eps_p = parity of cycles crossing via
 pair p satisfies eps_ik = eps_ij + eps_jk (symmetric difference)
@@ -2722,7 +2722,7 @@ this: M_p* contains M_p' + M_p'' with both summands >= 3 forces
 |M_p*| >= 3, contradicting frozenness. THE FLAG HAS ONE JOB LEFT,
 IN ONE CONFIGURATION. T(3) NOT PROVED.
 
-## §114 (2026-08-04) — STAR-CUT REDUCTION: the cleanest form of the last lemma
+## §114 (2026-08-04) STAR-CUT REDUCTION: the cleanest form of the last lemma
 
 Star cut at a vertex v (its 3 edges): M^A_p = {0}, so the budget
 reduces to M^B_p not containing 6 - i.e. no two neighbours of v are
@@ -2737,7 +2737,7 @@ linearity guarantees an even-parity pair exists. THE GAP IS EXACTLY
 THREE RESIDUES -> FOUR, i.e. saturation (sumset realizability).
 T(3) NOT PROVED.
 
-## §115 (2026-08-04) — CLARIFICATION: SS114's phrasing was circular
+## §115 (2026-08-04) CLARIFICATION: SS114's phrasing was circular
 
 The fourth even residue is 6, and a v1-v2 path = 6 (mod 8) in G - v
 IS a cycle = 0 (mod 8): "realize all four residues" is the THEOREM,
@@ -2751,7 +2751,7 @@ derive the forbidden residue from the three established (SS111).
 That, and only that, remains unproven.
 T(3) NOT PROVED. EG NOT PROVED.
 
-## §116 (2026-08-04) — The surviving configuration pinned to three types
+## §116 (2026-08-04) The surviving configuration pinned to three types
 
 Matching pair p* frozen on both sides: M^A = {c, c+4}, M^B = {d,d+4}.
 (1) crossing cycles via p* are all = c+d+2 (mod 4); mod-8-freeness
@@ -2766,7 +2766,7 @@ THE CONFIGURATION IS NOT ELIMINATED. Sumset realizability remains
 the only route I found, and I could not prove it.
 T(3) NOT PROVED. EG NOT PROVED.
 
-## §117 (2026-08-04) — The three types made explicit; session end
+## §117 (2026-08-04) The three types made explicit; session end
 
 TYPE (0,0): M^A = M^B = {0,4}; Menger's two disjoint a1-a2 paths
 must have lengths = 0 and = 4 (0+0 and 4+4 both close a cycle = 0),
@@ -2784,7 +2784,7 @@ Routes tried and failed: contract-and-avoid, cubic gadget caps,
 Menger disjointness, star-cut parity. Twelve self-caught
 retractions recorded across SS36-115.
 
-## §118 (2026-08-04) — LINKAGE LEMMA: base case of realizability proved
+## §118 (2026-08-04) LINKAGE LEMMA: base case of realizability proved
 
 LINKAGE LEMMA (proved): in a cut side A of 3-connected G0, for any
 terminals a_k, a_i, a_j there exist INTERNALLY DISJOINT a_k-a_i and
@@ -2804,7 +2804,7 @@ degree-2 forces every a1-a3 path to enter along one of the two
 R-paths, and paths disjoint from neither escape the count.
 T(3) NOT PROVED.
 
-## §119 (2026-08-04) — NEGATIVE RESULT: the budget method saturates
+## §119 (2026-08-04) NEGATIVE RESULT: the budget method saturates
 
 In the surviving configuration, with X1,X2 the a3-a1 lengths through
 a3's two neighbours and Y1,Y2 likewise for a3-a2: disjoint pairs
@@ -2820,7 +2820,7 @@ it saturates every inequality the method yields. Closing T(3) from
 here requires a genuinely DIFFERENT invariant, not a sharper use of
 this one. T(3) NOT PROVED; the method's ceiling is now identified.
 
-## §120 (2026-08-04) — Star-cut refinement; the ceiling re-confirmed
+## §120 (2026-08-04) Star-cut refinement; the ceiling re-confirmed
 
 Star cut at v (neighbours v1,v2,v3): M^A_p = {0}, budget = M^B_p
 avoids 6. If M^B_12 is mod-4-frozen, SS119 forces M^B_13, M^B_23 to
@@ -2834,7 +2834,7 @@ length >= 10. Structure saturated with long cycles in two residues;
 no contradiction emerges. SS119's ceiling re-confirmed from a
 second direction. T(3) NOT PROVED; a different invariant is needed.
 
-## §121 (2026-08-04) — Four candidate invariants tried; none breaks extremality
+## §121 (2026-08-04) Four candidate invariants tried; none breaks extremality
 
 (1) PERFECT MATCHING / 2-FACTOR: Petersen + Schonberger give every
 edge on an alternating even cycle (residue 2,4,6): no constraint
@@ -2849,7 +2849,7 @@ constrains sizes, not the saturated residue structure.
 NONE BREAKS THE EXTREMAL CONFIGURATION (SS119-120).
 T(3) NOT PROVED. EG NOT PROVED.
 
-## §122 (2026-08-04) — HOT-CROSSING THEOREM: extremality turned into a weapon
+## §122 (2026-08-04) HOT-CROSSING THEOREM: extremality turned into a weapon
 
 At a cut whose menus are H-PERIODIC (H = {0,4}; SS119 forces this in
 the surviving configuration), crossing cycles have length m + m' + 2
@@ -2870,7 +2870,7 @@ the ceiling is 8 and 3+3 does not contradict. This route closes
 exactly when parity-purity is established; not proved.
 T(3) NOT PROVED.
 
-## §123 (2026-08-04) — Case B also residue-realizable: the method's verdict
+## §123 (2026-08-04) Case B also residue-realizable: the method's verdict
 
 Case B (no frozen pair, all |M| >= 3): a hot cycle crossing at p
 means 2 in M^A + M^B; mod-8-freeness means 6 not in M^A + M^B. With
@@ -2888,7 +2888,7 @@ the framework distinguishes. Closing T(3) requires an invariant
 sensitive to what residues do not see: actual lengths, counts, or
 global structure. T(3) NOT PROVED; EG NOT PROVED.
 
-## §124 (2026-08-04) — Shift-Covering Fact; triangle/Kneser weaponization withdrawn
+## §124 (2026-08-04) Shift-Covering Fact; triangle/Kneser weaponization withdrawn
 
 SHIFT-COVERING FACT (proved, unconditional): at any cut, the Tutte
 cycle Z through terminal a1 (SS111) gives, for each w at arc-distance
@@ -2911,7 +2911,7 @@ PREMISE NOTE: not everything outside the extremal case checks out -
 live dependencies remain (DLS; the SS70 treewidth bound;
 realizability). T(3) NOT PROVED.
 
-## §125 (2026-08-04) — STRUCTURE THEOREM: the obstructions inverted into conditions
+## §125 (2026-08-04) STRUCTURE THEOREM: the obstructions inverted into conditions
 
 THEOREM. A minimal counterexample G0 to T(3) satisfies at least one:
 (a) G0 has NO cycle of length = 0 (mod 4); or
@@ -2937,7 +2937,7 @@ all != 0 (mod 4). So (a) survives the obvious attack.
 T(3) NOT PROVED - but the obstructions are now HYPOTHESES of a
 proved structure theorem.
 
-## §126 (2026-08-04) — Branch (a) halved: it forces non-bipartiteness
+## §126 (2026-08-04) Branch (a) halved: it forces non-bipartiteness
 
 EVEN-SHARING LAW (proved, under branch (a) = no cycle = 0 mod 4):
 two even cycles meeting in a single path P give |C x C'| =
@@ -2956,7 +2956,7 @@ but in a BIPARTITE bridge that sum is even => EVERY SUCH BRIDGE
 CONTAINS AN ODD CYCLE. Branch (a) forces odd cycles locally, inside
 every bridge of that shape. T(3) NOT PROVED; branch (a) halved.
 
-## §127 (2026-08-04) — Branch (a): the bridge laws
+## §127 (2026-08-04) Branch (a): the bridge laws
 
 C even cycle (= 2 mod 4), bridge B attaching at x,y,z with arcs
 alpha,beta,gamma and Steiner legs L_x,L_y,L_z. Even-Sharing applied
@@ -2975,7 +2975,7 @@ L_i + L_j >= the complementary arcs: a metric constraint giving
 n >~ |C|^2/4 for spread-out bridges.
 T(3) NOT PROVED; branch (a) heavily constrained.
 
-## §128 (2026-08-04) — Branch (a) survives its smallest case (m = 6)
+## §128 (2026-08-04) Branch (a) survives its smallest case (m = 6)
 
 Shortest even cycle |C| = 6 (even, = 2 mod 4, >= 6 by girth). Bridge
 laws force EXACTLY TWO bridges, each with 3 attachments, one taking
@@ -2992,7 +2992,7 @@ with <= 4 attachments; |C|/4..|C|/3 bridges per even cycle; metric
 leg bounds) but SURVIVES its smallest case; branch (b) untouched.
 T(3) NOT PROVED.
 
-## §129 (2026-08-04) — IDENTIFICATION: both residual objects are named
+## §129 (2026-08-04) IDENTIFICATION: both residual objects are named
 
 BRANCH (a) = the k = 4 case of "cycles of length divisible by k" at
 minimum degree 3. Landscape: k = 2 elementary (SS26); k = 3 is
@@ -3016,7 +3016,7 @@ more sumset inequalities.
 T(3) NOT PROVED - but both residuals now have addresses in the
 literature.
 
-## §130 (2026-08-04) — Branch (a): every even cycle separates
+## §130 (2026-08-04) Branch (a): every even cycle separates
 
 Using Tutte's peripheral-cycle theory (the SS129 identification) with
 the SS127 bridge laws: a PERIPHERAL cycle (non-separating, induced)
@@ -3036,7 +3036,7 @@ cyclically 5-edge-connected - independently consistent with the
 bounded-treewidth bound of SS70.
 T(3) NOT PROVED; branch (a) further constrained.
 
-## §131 (2026-08-04) — Branch (a): the Minimal Blob Theorem
+## §131 (2026-08-04) Branch (a): the Minimal Blob Theorem
 
 Choose an even cycle C and a component K of G0 - V(C) with |K|
 MINIMUM over all such pairs.
@@ -3057,7 +3057,7 @@ a cycle of length <= 4 inside K - impossible at girth >= 5.
 edges to C, with x1,x2 (and y1,y2) at ODD distance on C (opposite
 colour classes). T(3) NOT PROVED; branch (a) pinned further.
 
-## §132 (2026-08-04) — Minimal blob is arithmetically realizable (checked)
+## §132 (2026-08-04) Minimal blob is arithmetically realizable (checked)
 
 C even, |C| = m = 2 (mod 4); blob edge uv attaching at x1,x2,y1,y2
 in cyclic order with arcs p,q,r,s. Laws: p, r odd (same-vertex pairs
@@ -3075,7 +3075,7 @@ derived constraint is satisfiable; branch (b) remains a
 Kemperman-classified family, not yet enumerated.
 T(3) NOT PROVED.
 
-## §133 (2026-08-05) — BRANCH (a) DEAD: Dean-Lesniak-Saito (literature)
+## §133 (2026-08-05) BRANCH (a) DEAD: Dean-Lesniak-Saito (literature)
 
 VERIFIED IN THE LITERATURE: Dean, Lesniak & Saito, "Cycles of length
 0 modulo 4 in graphs", Discrete Mathematics 121 (1993) 37-49:
@@ -3098,7 +3098,7 @@ case fails for 2-connected cubic graphs and is exactly where EG
 lives - the difficulty of T(3) sits at the even-modulus boundary.
 T(3) NOT PROVED - but now ONE residual branch, not two.
 
-## §134 (2026-08-05) — Literature survey: results, calibration, and what stays open
+## §134 (2026-08-05) Literature survey: results, calibration, and what stays open
 
 CONFIRMED KILLS:
 * Dean-Lesniak-Saito 1993 (Discrete Math 121, 37-49): every
@@ -3128,7 +3128,7 @@ CALIBRATION:
 STATE: ONE residual branch - the Case-B cut (Kemperman-extremal
 menus). T(3) NOT PROVED.
 
-## §135 (2026-08-05) — HONEST DOWNGRADE of SS125 after branch (a) dies
+## §135 (2026-08-05) HONEST DOWNGRADE of SS125 after branch (a) dies
 
 With branch (a) eliminated by Dean-Lesniak-Saito, SS125 reduces to:
 every minimal counterexample has a CASE-B CUT, i.e. SOME cut with no
@@ -3151,7 +3151,7 @@ calibration that k = 8 is the open even-modulus frontier.
 NOT gained: any corner on the counterexample.
 T(3) NOT PROVED.
 
-## §136 (2026-08-05) — Survey round 2: the expander lever, and the degree-3 wall
+## §136 (2026-08-05) Survey round 2: the expander lever, and the degree-3 wall
 
 RESTATEMENT OF WHAT REMAINS: T(3) <=> every C4-free graph with
 min degree >= 3 contains a cycle of length divisible by 8. Minimal
@@ -3181,7 +3181,7 @@ average degree 192(k+1). Nothing delivers four consecutive even
 lengths at degree 3.
 T(3) NOT PROVED.
 
-## §137 (2026-08-05) — THE SYNTHESIS: three regimes, two closed by literature
+## §137 (2026-08-05) THE SYNTHESIS: three regimes, two closed by literature
 
 Subdividing the residual by structural regime and mapping each onto
 the literature:
@@ -3210,7 +3210,7 @@ exponential in 8, so the check is astronomically infeasible - the
 same wall SS83 hit from the other side.
 T(3) NOT PROVED.
 
-## §138 (2026-08-05) — HOW THE LITERATURE RESOLVES "DECIDABLE BUT INFEASIBLE"
+## §138 (2026-08-05) HOW THE LITERATURE RESOLVES "DECIDABLE BUT INFEASIBLE"
 
 ANSWER: the unavoidable-set-of-reducible-configurations method
 (DISCHARGING). When a problem reduces to checking a bounded-
@@ -3243,7 +3243,7 @@ e.g. arXiv:2204.05791).
 NEXT: build the charge on the tree decomposition and pair it with
 the existing reducible surgeries. T(3) NOT PROVED.
 
-## §139 (2026-08-05) — The discharging framework built; what it does and does not give
+## §139 (2026-08-05) The discharging framework built; what it does and does not give
 
 CHARGE (constructed): tree decomposition T of G0 of width <= W0
 (Thomassen); charge mu(b) = deg_T(b) - 2 per bag. Then
@@ -3272,7 +3272,7 @@ have exactly this, with rules drawn from faces. This program has the
 charge and the surgeries; it does NOT have the configuration list.
 T(3) NOT PROVED.
 
-## §140 (2026-08-05) — STEP BACK: the Erdos-Posa restructuring (better argument)
+## §140 (2026-08-05) STEP BACK: the Erdos-Posa restructuring (better argument)
 
 NEW LEVER (not available earlier): THOMASSEN 1988 Erdos-Posa for
 0-mod-m cycles - for every m there is f such that for every k and
@@ -3304,7 +3304,7 @@ T(3) NOT PROVED - but the architecture is rebuilt on stronger
 hypotheses. NEXT: (I) threading/linkage of 8 disjoint hot cycles;
 (II) read off the extremal 0-mod-4-free families and check them.
 
-## §141 (2026-08-05) — Branch I executed: threading is PARITY-BLOCKED in principle
+## §141 (2026-08-05) Branch I executed: threading is PARITY-BLOCKED in principle
 
 COMPUTATION: three disjoint hot cycles C1,C2,C3 (Erdos-Posa) and a
 cycle threading all three, using arcs a,b,c plus three connecting
@@ -3335,7 +3335,7 @@ structures (odd cycles) interacting with the hot cycles - the
 Branch II / non-bipartite side.
 T(3) NOT PROVED.
 
-## §142 (2026-08-05) — Following the parity diagnosis: the 2-factor/Kempe handle
+## §142 (2026-08-05) Following the parity diagnosis: the 2-factor/Kempe handle
 
 If G0 is BIPARTITE then (Konig) it is 3-edge-colourable:
 G0 = M1 u M2 u M3, giving three 2-factors M_i u M_j, each a disjoint
@@ -3358,7 +3358,7 @@ case; and sum of lengths = n with each length != 0 (mod 8) is
 satisfiable on its face - no contradiction derived.
 T(3) NOT PROVED.
 
-## §143 (2026-08-05) — FORCING FROM KNOWN-GOOD SUBCASES
+## §143 (2026-08-05) FORCING FROM KNOWN-GOOD SUBCASES
 
 Every subcase where T(3)/EG is KNOWN forces structure on G0:
 * 3-connected cubic PLANAR (Heckman-Krakovski) => G0 NON-PLANAR
@@ -3382,7 +3382,7 @@ close it; the subdivision's degree-2 vertices need third edges, and
 any contradiction must come from that extra structure.
 T(3) NOT PROVED.
 
-## §144 (2026-08-05) — Naming the residual: PUMPABLE CUBIC CHAIN; closing attempt
+## §144 (2026-08-05) Naming the residual: PUMPABLE CUBIC CHAIN; closing attempt
 
 NAMING: G0 has bounded treewidth (Thomassen), so candidates form a
 REGULAR TREE LANGUAGE (bounded-width HR grammar; "no cycle = 0 mod
@@ -3412,7 +3412,7 @@ cover a parity class - close, but "jointly" is not "at the pair the
 cycle uses".
 T(3) NOT PROVED.
 
-## §145 (2026-08-05) — At most one pair per unit is frozen; the gap quantified
+## §145 (2026-08-05) At most one pair per unit is frozen; the gap quantified
 
 PROVED: for a unit U with terminals a,b,c, SS111 (contraction +
 Tutte) says both menus at a terminal cannot be mod-4-frozen. So at
@@ -3438,7 +3438,7 @@ length difference involves the uncontrolled exterior rather than a
 clean local shift.
 T(3) NOT PROVED.
 
-## §146 (2026-08-05) — THE EIGHT EARS LEMMA IS A SOLVED PROBLEM: CGGGLS import
+## §146 (2026-08-05) THE EIGHT EARS LEMMA IS A SOLVED PROBLEM: CGGGLS import
 
 IDENTIFICATION (exact, not analogy): ears of C are A-PATHS for
 A = V(C). Label every edge 1 in Z4 and each C-edge by its position
@@ -3467,7 +3467,7 @@ exactly where every previous attempt died.
 REMAINING: kill the <= 14-vertex hitting-set branch (the Z4-graded
 four-layer structure). T(3) NOT PROVED.
 
-## §147 (2026-08-05) — The Z4-graded residual, fully specified
+## §147 (2026-08-05) The Z4-graded residual, fully specified
 
 G0 - X (|X| <= 14) has levels L0..L3, every edge between consecutive
 levels. For a cycle with f forward, b backward edges the grading
@@ -3493,7 +3493,7 @@ Salehi Nowbandegani & Esfandiari), so the forced near-bipartiteness
 yields no citable win.
 T(3) NOT PROVED.
 
-## §148 (2026-08-05) — SYNTHESIS ON THE GRADED OBJECT: winding parity forces a Z8-grading
+## §148 (2026-08-05) SYNTHESIS ON THE GRADED OBJECT: winding parity forces a Z8-grading
 
 PIECE 1 (grading): a MONOTONE cycle (all edges forward) has b = 0,
 so length = 0 (mod 4): length = 4m with m its WINDING NUMBER around
@@ -3517,7 +3517,7 @@ question about an orientation, not a residue question - far narrower
 than anything the residue machinery left.
 T(3) NOT PROVED.
 
-## §149 (2026-08-05) — RETRACTION of SS148; salvage: MONOTONE RIGIDITY
+## §149 (2026-08-05) RETRACTION of SS148; salvage: MONOTONE RIGIDITY
 
 RETRACTED (13th): SS148's Z8-grading does NOT follow. Winding parity
 psi cannot be a vertex potential: going once around the long cycle C
@@ -3541,7 +3541,7 @@ paths, never for a DIRECTED sub-structure, so SS109's arc-parity
 kill does not apply as it stands.
 T(3) NOT PROVED.
 
-## §150 (2026-08-05) — The directed/undirected tension examined; why it does not yet close
+## §150 (2026-08-05) The directed/undirected tension examined; why it does not yet close
 
 SHARED-PATH CONSTRAINT: two monotone cycles meeting in a single path
 of length s have symmetric difference of length |Z1|+|Z2|-2s =
@@ -3567,7 +3567,7 @@ directed paths mod-8-frozen; undirected paths not mod-4-frozen;
 monotone cycles share only different-level paths.
 T(3) NOT PROVED.
 
-## §151 (2026-08-05) — EXOTIC IMPORT: Ihara zeta / non-backtracking spectrum
+## §151 (2026-08-05) EXOTIC IMPORT: Ihara zeta / non-backtracking spectrum
 
 REFRAMING: in girth >= 6, every closed NON-BACKTRACKING walk of
 length 8 is a simple 8-cycle (two shorter cycles need >= 12 edges),
@@ -3592,7 +3592,7 @@ independently). This is only the FIRST condition: forbidding 16-,
 constraints.
 T(3) NOT PROVED.
 
-## §152 (2026-08-05) — Directing the spectral tools: exact formula, dichotomy, bound
+## §152 (2026-08-05) Directing the spectral tools: exact formula, dichotomy, bound
 
 (1) EXACT FORMULA: for a cubic graph of girth >= 6 with NO 8-CYCLES
 the Bass-Ihara identity collapses (n-terms cancel identically) to
@@ -3619,7 +3619,7 @@ rearrangement can satisfy - unlike every configuration-level tool
 the obstruction previously absorbed.
 T(3) NOT PROVED.
 
-## §153 (2026-08-05) — REVERSE-ENGINEERING: T(3) as an extremal edge bound
+## §153 (2026-08-05) REVERSE-ENGINEERING: T(3) as an extremal edge bound
 
 IF T(3) IS TRUE, the proof must show the class
 F = {C4-free graphs with no cycle = 0 (mod 8)} has NO CUBIC MEMBER.
@@ -3652,7 +3652,7 @@ the work the stronger modulus did for DLS. That is why the target is
 not a corollary of their theorem, and where the difficulty sits.
 T(3) NOT PROVED.
 
-## §154 (2026-08-05) — DIAGNOSIS: why every route hits the same wall
+## §154 (2026-08-05) DIAGNOSIS: why every route hits the same wall
 
 FIVE WALL-SHAPES, ALL ONE WALL:
 1. RESIDUE-LOCAL SYSTEMS SATURATE. SS119: the surviving

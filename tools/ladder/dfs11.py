@@ -119,7 +119,7 @@ def search():
             print('nodes=%dM depth=%d edges=%d' %
                   (stats['nodes'] // 10**6, idx, len(edges)), flush=True)
         if stats['nodes'] > cap:
-            raise SystemExit('NODE CAP HIT — INCONCLUSIVE')
+            raise SystemExit('NODE CAP HIT: INCONCLUSIVE')
         while idx < len(order) and order[idx] in matched:
             idx += 1
         if idx == len(order):
